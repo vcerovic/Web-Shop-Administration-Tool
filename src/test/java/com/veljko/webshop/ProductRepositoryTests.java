@@ -3,6 +3,7 @@ package com.veljko.webshop;
 import com.veljko.webshop.product.Product;
 import com.veljko.webshop.product.ProductRepository;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -16,9 +17,13 @@ public class ProductRepositoryTests {
     @Autowired
     private ProductRepository repository;
 
+    @BeforeEach
+    void destoryAll(){
+        repository.deleteAll();
+    }
 
     @Test
-    public void testFindMostExpensiveProduct() {
+    void testFindMostExpensiveProduct() {
         Product product = new Product(
                 "Yugo",
                 "Test",
@@ -56,7 +61,7 @@ public class ProductRepositoryTests {
 
 
     @Test
-    public void testFindMostSoldProduct() {
+    void testFindMostSoldProduct() {
         Product product = new Product(
                 "Yugo",
                 "Test",

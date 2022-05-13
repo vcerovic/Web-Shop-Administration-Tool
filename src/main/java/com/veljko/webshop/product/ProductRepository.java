@@ -1,9 +1,10 @@
 package com.veljko.webshop.product;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 
-public interface ProductRepository extends CrudRepository<Product, Integer> {
+
+public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     @Query("from Product as p where p.price = (select max(pr.price) from Product pr)")
     Product findMostExpensiveProduct();

@@ -12,7 +12,7 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customer_id")
-    private int id;
+    private Integer id;
 
     private String name, email, address;
     private int purchases;
@@ -24,11 +24,19 @@ public class Customer {
     public Customer() {
     }
 
-    public int getId() {
+    public Customer(String name, String email, String address, int purchases, int spent) {
+        this.name = name;
+        this.email = email;
+        this.address = address;
+        this.purchases = purchases;
+        this.spent = spent;
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -72,6 +80,14 @@ public class Customer {
         this.spent = spent;
     }
 
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
+    }
+
     @Override
     public String toString() {
         return "Customer{" +
@@ -81,6 +97,7 @@ public class Customer {
                 ", address='" + address + '\'' +
                 ", purchases=" + purchases +
                 ", spent=" + spent +
+                ", products=" + products +
                 '}';
     }
 }

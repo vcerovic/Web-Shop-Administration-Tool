@@ -5,7 +5,7 @@
 <html>
     <head>
         <title>Customers</title>
-        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="/css/style.css" />
     </head>
     <body>
           <div id="wrapper">

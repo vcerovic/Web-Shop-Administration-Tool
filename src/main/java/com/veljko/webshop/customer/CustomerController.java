@@ -35,8 +35,8 @@ public class CustomerController {
     }
 
     @GetMapping("/new")
-    public void showAddCustomerForm(){
-        System.out.println("show new form");
+    public String showAddCustomerForm(){
+        return "customer/newCustomerForm";
     }
 
     @PostMapping

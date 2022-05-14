@@ -26,7 +26,7 @@
                           <ul>
                             <li>
                               <i class="fa-solid fa-user-plus"></i>
-                              <a href="/customers/new">Add Buyer</a>
+                              <a href="/customers/new">Add Customer</a>
                             </li>
                             <li>
                               <i class="fa-solid fa-file-circle-plus"></i>

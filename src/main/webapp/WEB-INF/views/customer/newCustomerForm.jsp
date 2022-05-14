@@ -8,6 +8,7 @@
     <head>
         <title>Add new customer</title>
         <link rel="stylesheet" href="/css/style.css" />
+        <script defer src="/js/customers.js"></script>
     </head>
 
     <body>
@@ -17,24 +18,30 @@
 
             <div class="content-container">
                     <div class="form-container">
-                      <div class="title">Login Form</div>
+                      <div class="title">Add new customer</div>
 
-                      <form action="#" method="POST">
-                        <div class="field">
-                          <input type="text" name="email" id="email" required />
-                          <label for="email">Email Address</label>
-                        </div>
-
-                        <div class="field">
-                          <input type="password" name="password" id="password" required />
-                          <label for="password">Password</label>
-                        </div>
+                      <form action="/" method="POST" id="customer_form">
+                           <div class="field">
+                             <input type="text" name="name" id="name" placeholder=" ">
+                             <label for="name">Name</label>
+                             <div class="error"></div>
+                           </div>
+                           <div class="field">
+                             <input type="text" name="email" id="email" placeholder=" ">
+                             <label for="email">Email Address</label>
+                             <div class="error"></div>
+                           </div>
+                           <div class="field">
+                             <input type="text" name="address" id="address" placeholder=" ">
+                             <label for="address">Address</label>
+                             <div class="error"></div>
+                           </div>
 
                         <div class="content">
                         </div>
 
                         <div class="field">
-                          <input class="action-btn" type="submit" value="Login" />
+                          <input class="action-btn" type="submit" value="Submit" />
                         </div>
                       </form>
                     </div>

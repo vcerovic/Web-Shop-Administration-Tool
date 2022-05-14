@@ -211,7 +211,7 @@ body {
       text-align: left;
 
       .stats-title {
-        font-size: 1em;   
+        font-size: 1em;
         font-weight: 500;
       }
 
@@ -261,8 +261,13 @@ body {
   .field {
     height: 50px;
     width: 100%;
-    margin-top: 20px;
+    margin-top: 30px;
     position: relative;
+
+    &:first-child{
+      margin-top: 0;
+      margin-top: 20px;
+    }
 
     input {
       height: 100%;
@@ -272,21 +277,51 @@ body {
       padding-left: 20px;
       border: 1px solid lightgrey;
       border-radius: 25px;
+      transition: 200ms;
 
-      &:focus,
-      &:valid {
+      &:focus {
         border-color: $active;
       }
 
       &:focus ~ label,
-      &:valid ~ label {
+      &:not(:placeholder-shown) ~ label {
         top: 0%;
         font-size: 16px;
         color: $active;
         background: #fff;
         transform: translateY(-50%);
       }
+      
+
     }
+
+    &.success {
+      input{
+        border-color: #24ae36;
+      }
+
+      &:not(:placeholder-shown)  label {
+        color: #24ae36;
+      }
+    }
+
+    &.error {
+      input{
+        border-color: #d61717;
+      }
+
+      &:not(:placeholder-shown)  label {
+        color: #d61717 !important;
+      }
+    }
+    
+
+    .error{
+      transition: 200ms;
+      padding-top: 5px;
+      color: #d61717;
+    }
+
     label {
       position: absolute;
       top: 50%;
@@ -356,6 +391,7 @@ footer {
   font-family: "Montserrat", sans-serif;
   border: none !important;
   box-shadow: $shadow;
+  transition: 0ms !important;
 
   &:hover {
     background: $primary;

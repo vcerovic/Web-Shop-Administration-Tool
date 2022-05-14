@@ -276,8 +276,13 @@ body {
 .form-container .field {
   height: 50px;
   width: 100%;
-  margin-top: 20px;
+  margin-top: 30px;
   position: relative;
+}
+
+.form-container .field:first-child {
+  margin-top: 0;
+  margin-top: 20px;
 }
 
 .form-container .field input {
@@ -288,20 +293,45 @@ body {
   padding-left: 20px;
   border: 1px solid lightgrey;
   border-radius: 25px;
+  -webkit-transition: 200ms;
+  transition: 200ms;
 }
 
-.form-container .field input:focus, .form-container .field input:valid {
+.form-container .field input:focus {
   border-color: #792ff8;
 }
 
 .form-container .field input:focus ~ label,
-.form-container .field input:valid ~ label {
+.form-container .field input:not(:placeholder-shown) ~ label {
   top: 0%;
   font-size: 16px;
   color: #792ff8;
   background: #fff;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
+}
+
+.form-container .field.success input {
+  border-color: #24ae36;
+}
+
+.form-container .field.success:not(:placeholder-shown) label {
+  color: #24ae36;
+}
+
+.form-container .field.error input {
+  border-color: #d61717;
+}
+
+.form-container .field.error:not(:placeholder-shown) label {
+  color: #d61717 !important;
+}
+
+.form-container .field .error {
+  -webkit-transition: 200ms;
+  transition: 200ms;
+  padding-top: 5px;
+  color: #d61717;
 }
 
 .form-container .field label {
@@ -387,6 +417,8 @@ footer p {
   border: none !important;
   -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
           box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  -webkit-transition: 0ms !important;
+  transition: 0ms !important;
 }
 
 .action-btn:hover {

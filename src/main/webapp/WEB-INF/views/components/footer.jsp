@@ -7,3 +7,5 @@
         Veljko Cerovic
       </p>
     </footer>
+
+  <script defer src="/js/app.js"></script>

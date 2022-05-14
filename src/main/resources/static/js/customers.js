@@ -11,6 +11,9 @@ form.addEventListener('submit', e => {
     validateFields();
 });
 
+
+
+
 const setError = (element, message) => {
     const inputControl = element.parentElement;
     const errorDisplay = inputControl.querySelector('.error');

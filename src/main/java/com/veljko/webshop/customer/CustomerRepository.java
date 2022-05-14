@@ -10,4 +10,5 @@ public interface CustomerRepository extends CrudRepository<Customer, Integer> {
 
     @Query("from Customer as c where c.purchases = (select max(cu.purchases) from Customer cu)")
     Customer findCustomerWithMostPurchases();
+
 }

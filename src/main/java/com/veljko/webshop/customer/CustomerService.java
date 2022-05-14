@@ -59,5 +59,15 @@ public class CustomerService{
         return repository.save(cust);
     }
 
+    public Customer findCustomerWithMostMoneySpent(){
+        return repository.findCustomerWithMostMoneySpent();
+    }
 
+    public Customer findCustomerWithMostPurchases(){
+        return repository.findCustomerWithMostPurchases();
+    }
+
+    public long countAll(){
+        return repository.count();
+    }
 }

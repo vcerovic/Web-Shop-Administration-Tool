@@ -1,0 +1,363 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900");
+
+$primary: #2f2f30;
+$row-color: rgb(255, 255, 255);
+$evan-row-color: rgb(243, 238, 238);
+$active: #792ff8;
+$main-gradient: linear-gradient(-135deg, #da5ed2, #586fe6);
+$shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: $active;
+  background: $main-gradient;
+  font-family: "Montserrat", sans-serif;
+  color: rgb(43, 43, 43);
+  text-align: center;
+  text-decoration: none;
+}
+
+//Wrapper
+#wrapper {
+  width: 90%;
+  margin: 5em auto;
+  display: flex;
+}
+
+//Content container
+.content-container {
+  width: 88%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+
+//Menu
+#menu {
+  height: 60%;
+  width: 12%;
+
+  .navbar {
+    background-color: white;
+    border-radius: 15px;
+    overflow: hidden;
+
+    &:last-child {
+      margin-top: 3em;
+    }
+
+    header {
+      padding: 1em;
+      width: 100%;
+      background-color: $primary;
+      color: white;
+    }
+
+    ul {
+      list-style: none;
+      text-align: center;
+
+      li {
+        width: 100%;
+        padding: 1em 0;
+        border-bottom: 1px solid $evan-row-color;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        transition: 200ms;
+
+        &:hover {
+          box-shadow: rgba(0, 0, 0, 0.2) 0px -30px 36px -28px inset;
+
+          a,
+          i {
+            color: $active;
+          }
+        }
+
+        &:last-child {
+          border: none;
+        }
+      }
+
+      .active {
+        box-shadow: rgba(0, 0, 0, 0.2) 0px -30px 36px -28px inset;
+
+        a,
+        i {
+          color: $active;
+        }
+
+        a {
+          cursor: not-allowed;
+          pointer-events: none;
+        }
+      }
+
+      a,
+      i {
+        text-decoration: none;
+        color: $primary;
+        font-size: 1.2em;
+        padding: 0.3em;
+      }
+
+      a {
+        width: 100%;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+//Table
+.content-table {
+  border-collapse: collapse;
+  border-radius: 15px;
+  min-width: 70%;
+  overflow: hidden;
+  box-shadow: $shadow;
+
+  thead {
+    tr {
+      background-color: $primary;
+      color: #ffffff;
+    }
+
+    th {
+      padding: 16px 17px;
+      font-weight: 700;
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid #dddddd;
+      background-color: $row-color;
+
+      .image-td {
+        img {
+          height: 50px;
+          border-radius: 50%;
+        }
+
+        padding: 12px 5px;
+      }
+
+      td {
+        font-weight: 500;
+        border-right: 1px solid #bfbfbf;
+        padding: 14px 17px;
+
+        &:last-child {
+          border: none;
+        }
+      }
+
+      &:nth-of-type(even) {
+        background-color: $evan-row-color;
+      }
+
+      &:last-of-type {
+        border-bottom: none;
+      }
+    }
+  }
+
+  .edit-btn i,
+  .delete-btn i {
+    transition: 200ms;
+    margin: 0 0.4em;
+
+    &:hover {
+      transform: scale(1.3);
+    }
+  }
+
+  .edit-btn i {
+    font-size: 1.3em;
+    color: #1b8c2a;
+  }
+
+  .delete-btn i {
+    font-size: 1.25em;
+    color: #bd1c1c;
+  }
+}
+
+//Stats
+#stats {
+  .stats-card {
+    margin: 3em 0;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 15px;
+    padding: 1.25em;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    .stats-info {
+      width: 100%;
+      text-align: left;
+
+      .stats-title {
+        font-size: 1em;   
+        font-weight: 500;
+      }
+
+      h1:last-child {
+        font-size: 1.5em;
+      }
+    }
+
+    i {
+      margin-right: 1em;
+      font-size: 1.7em;
+      color: #262626;
+
+      &::before {
+        line-height: 50px;
+        height: 50px;
+        width: 50px;
+        background-color: $active;
+        background-image: $main-gradient;
+        border-radius: 50%;
+        display: inline-block;
+      }
+    }
+  }
+}
+
+.form-container {
+  width: 30%;
+  background: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1);
+
+  .title {
+    font-size: 2.2em;
+    font-weight: bold;
+    text-align: center;
+    padding: 0.7em 0;
+    color: #fff;
+    user-select: none;
+    background-color: $primary;
+  }
+
+  form {
+    padding: 20px 30px 30px 30px;
+  }
+  .field {
+    height: 50px;
+    width: 100%;
+    margin-top: 20px;
+    position: relative;
+
+    input {
+      height: 100%;
+      width: 100%;
+      outline: none;
+      font-size: 17px;
+      padding-left: 20px;
+      border: 1px solid lightgrey;
+      border-radius: 25px;
+
+      &:focus,
+      &:valid {
+        border-color: $active;
+      }
+
+      &:focus ~ label,
+      &:valid ~ label {
+        top: 0%;
+        font-size: 16px;
+        color: $active;
+        background: #fff;
+        transform: translateY(-50%);
+      }
+    }
+    label {
+      position: absolute;
+      top: 50%;
+      left: 20px;
+      color: #999999;
+      font-weight: 400;
+      font-size: 17px;
+      pointer-events: none;
+      transform: translateY(-50%);
+      transition: all 0.3s ease;
+    }
+  }
+
+  .content {
+    margin: 2em 0;
+    padding: 0 10px;
+    display: flex;
+    width: 100%;
+    font-size: 1em;
+    align-items: center;
+    justify-content: flex-start;
+
+    input {
+      width: 15px;
+      height: 15px;
+      background: red;
+    }
+
+    label {
+      color: #262626;
+      user-select: none;
+      padding-left: 5px;
+    }
+  }
+}
+
+//Footer
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 120px;
+  margin-bottom: 50px;
+  width: 30%;
+  height: 3.2em;
+  background-color: $primary;
+  color: white;
+  text-align: center;
+  border-radius: 15px;
+
+  p {
+    font-size: 1em;
+    font-weight: 400;
+  }
+}
+
+//Classes
+.action-btn {
+  color: #fff;
+  padding-left: 0;
+  margin-top: -10px;
+  font-size: 2em;
+  font-weight: bold;
+  cursor: pointer;
+  background: $main-gradient;
+  font-family: "Montserrat", sans-serif;
+  border: none !important;
+  box-shadow: $shadow;
+
+  &:hover {
+    background: $primary;
+  }
+}

@@ -2,6 +2,7 @@ package com.veljko.webshop.customer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,12 +19,19 @@ public class CustomerController {
     }
 
     @GetMapping
-    public void listAllCustomers(){
+    public String listAllCustomers(Model model){
         List<Customer> customers = customerService.findAll();
+        Customer customerWithMostMoneySpent = customerService.findCustomerWithMostMoneySpent();
+        Customer customerWithMostPurchases = customerService.findCustomerWithMostPurchases();
+        long totalCustomers = customerService.countAll();
+        System.out.println(totalCustomers);
 
-        for(Customer customer : customers){
-            System.out.println(customer.toString());
-        }
+        model.addAttribute("customers", customers);
+        model.addAttribute("customer_spent", customerWithMostMoneySpent);
+        model.addAttribute("customer_purchase", customerWithMostPurchases);
+        model.addAttribute("total_customers", totalCustomers);
+
+        return "customer/customers";
     }
 
     @GetMapping("/new")

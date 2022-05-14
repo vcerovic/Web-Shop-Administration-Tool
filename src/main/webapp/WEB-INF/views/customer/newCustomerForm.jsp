@@ -1,4 +1,7 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page isELIgnored="false" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 
 <!DOCTYPE html>
 <html>
@@ -9,7 +12,8 @@
 
     <body>
           <div id="wrapper">
-                 <%@ include file="../components/menu.jsp" %>
+                    <c:set var="menu" value="new_customer" scope="request"/>
+                        <%@ include file="../components/menu.jsp" %>
 
             <div class="content-container">
                     <div class="form-container">

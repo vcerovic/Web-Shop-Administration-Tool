@@ -1,14 +1,17 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page isELIgnored="false" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 
 <!DOCTYPE html>
 <html>
     <head>
         <title>Customers</title>
-        <link rel="stylesheet" href="/css/style.css" />
+        <link rel="stylesheet" href="css/style.css" />
     </head>
     <body>
           <div id="wrapper">
+                <c:set var="menu" value="customers" scope="request"/>
                  <%@ include file="../components/menu.jsp" %>
                       <div class="content-container">
                         <table class="content-table">
@@ -32,7 +35,7 @@
                                 <td>${customer.address}</td>
                                 <td>${customer.purchases}</td>
                                 <td>${customer.spent}</td>
-                               <td>
+                                <td>
                                   <a href="" class="edit-btn"
                                     ><i class="fa-solid fa-pen-to-square"></i
                                   ></a>
@@ -56,7 +59,7 @@
                           </div>
 
                           <div class="stats-card">
-                            <i class="fa-solid fa-truck"></i>
+                            <i class="fa-solid fa-piggy-bank"></i>
                             <div class="stats-info">
                               <p class="stats-title">Most purchases:</p>
                                <h1>${customer_purchase.purchases}</h1>

@@ -60,11 +60,11 @@ public class CustomerService{
     }
 
     public Customer findCustomerWithMostMoneySpent(){
-        return repository.findCustomerWithMostMoneySpent();
+        return repository.findTopByOrderBySpentDesc();
     }
 
     public Customer findCustomerWithMostPurchases(){
-        return repository.findCustomerWithMostPurchases();
+        return repository.findTopByOrderByPurchasesDesc();
     }
 
     public long countAll(){

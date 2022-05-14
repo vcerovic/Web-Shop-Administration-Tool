@@ -55,5 +55,6 @@
               src="https://kit.fontawesome.com/408283dcd0.js"
               crossorigin="anonymous"
             ></script>
+            <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     </body>
 </html>

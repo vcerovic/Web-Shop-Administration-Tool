@@ -3,6 +3,9 @@ package com.veljko.webshop.customer;
 import com.veljko.webshop.product.Product;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Entity
@@ -14,7 +17,18 @@ public class Customer {
     @Column(name = "customer_id")
     private Integer id;
 
-    private String name, email, address;
+    @NotBlank
+    @Size(min = 4, max = 20, message = "Name must be between 4 and 45 characters")
+    private String name;
+
+    @NotBlank
+    @Email
+    private String email;
+
+    @NotBlank
+    @Size(min = 4, max = 65, message = "Address must be between 4 and 45 characters")
+    private String address;
+
     private int purchases;
     private int spent;
 

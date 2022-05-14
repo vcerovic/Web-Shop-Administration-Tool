@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -24,7 +25,6 @@ public class CustomerController {
         Customer customerWithMostMoneySpent = customerService.findCustomerWithMostMoneySpent();
         Customer customerWithMostPurchases = customerService.findCustomerWithMostPurchases();
         long totalCustomers = customerService.countAll();
-        System.out.println(totalCustomers);
 
         model.addAttribute("customers", customers);
         model.addAttribute("customer_spent", customerWithMostMoneySpent);
@@ -40,8 +40,10 @@ public class CustomerController {
     }
 
     @PostMapping
-    public void saveCustomer(@ModelAttribute("customer") Customer customer){
-        System.out.println(customer.toString());
+    public String saveCustomer(@Valid @ModelAttribute("customer") Customer customer) {
+        customerService.save(customer);
+
+        return "redirect:/customers";
     }
 
     @DeleteMapping("/{id}")

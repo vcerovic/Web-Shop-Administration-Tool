@@ -27,24 +27,24 @@ public class CustomerRepositoryTests {
         Customer customer1 = new Customer(
                 "Veljko",
                 "veljko@gmail.com",
-                "Nis", 5, 89000);
+                "Nist", 5, 89000);
 
         Customer customer2 = new Customer(
                 "Marko",
                 "Marko@gmail.com",
-                "Nis", 4, 54000);
+                "Nist", 4, 54000);
 
         Customer customer3 = new Customer(
                 "Aleksa",
                 "Aleksa@gmail.com",
-                "Nis", 8, 12000);
+                "Nist", 8, 12000);
 
 
         repository.save(customer1);
         repository.save(customer2);
         repository.save(customer3);
 
-        Customer customerWithMostMoneySpent = repository.findCustomerWithMostMoneySpent();
+        Customer customerWithMostMoneySpent = repository.findTopByOrderBySpentDesc();
 
 
         Assertions.assertThat(customerWithMostMoneySpent).isNotNull();
@@ -57,23 +57,23 @@ public class CustomerRepositoryTests {
         Customer customer1 = new Customer(
                 "Veljko",
                 "veljko@gmail.com",
-                "Nis", 5, 89000);
+                "Nist", 5, 89000);
 
         Customer customer2 = new Customer(
                 "Marko",
                 "Marko@gmail.com",
-                "Nis", 4, 54000);
+                "Nist", 4, 54000);
 
         Customer customer3 = new Customer(
                 "Aleksa",
                 "Aleksa@gmail.com",
-                "Nis", 8, 12000);
+                "Nist", 8, 12000);
 
         repository.save(customer1);
         repository.save(customer2);
         repository.save(customer3);
 
-        Customer customerWithMostPurchases = repository.findCustomerWithMostPurchases();
+        Customer customerWithMostPurchases = repository.findTopByOrderByPurchasesDesc();
 
         Assertions.assertThat(customerWithMostPurchases).isNotNull();
         Assertions.assertThat(customerWithMostPurchases.getPurchases()).isEqualTo(8);
@@ -83,13 +83,13 @@ public class CustomerRepositoryTests {
 
     @Test
     void testFindCustomerWithMostMoneySpentIfNull(){
-        Customer customerWithMostMoneySpent = repository.findCustomerWithMostMoneySpent();
+        Customer customerWithMostMoneySpent = repository.findTopByOrderBySpentDesc();
         Assertions.assertThat(customerWithMostMoneySpent).isNull();
     }
 
     @Test
     void testFindCustomerWithMostPurchasesIfNull(){
-        Customer customerWithMostPurchases = repository.findCustomerWithMostPurchases();
+        Customer customerWithMostPurchases = repository.findTopByOrderByPurchasesDesc();
         Assertions.assertThat(customerWithMostPurchases).isNull();
     }
 }

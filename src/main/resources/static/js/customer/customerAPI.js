@@ -1,7 +1,9 @@
+import { showSuccessMessageAndRedirect, showErrorMessage } from "../utils/alertMessages.js";
+
 const BASE_URL = window.location.origin;
 
 //ADD CUSTOMER
-export async function postAddCustomer (form){
+export async function postAddCustomer(form) {
     const formData = new FormData(form);
 
     try {
@@ -11,39 +13,28 @@ export async function postAddCustomer (form){
             },
         });
 
-        alert(response.data);
-
-        window.location.replace(`${BASE_URL}/customers`);
+        showSuccessMessageAndRedirect(response.data, BASE_URL);
 
     } catch (error) {
-        if (error.response) {
-            console.log(error.response.status)
-        } else {
-            console.log(error.message)
-        }
+        console.log(error.message)
+        showErrorMessage(error.message);
     }
 }
 
 //DELETE CUSTOMER
-export async function postDeleteCustomer (url){
+export async function postDeleteCustomer(url) {
     try {
         const response = await axios.delete(url);
-
-        alert(response.data);
-
-        window.location.replace(`${BASE_URL}/customers`);
+        showSuccessMessageAndRedirect(response.data, BASE_URL);
 
     } catch (error) {
-        if (error.response) {
-            console.log(error.response.status)
-        } else {
-            console.log(error.message)
-        }
+        console.log(error.message)
+        showErrorMessage(error.message);
     }
 }
 
 //EDIT CUSTOMER
-export async function postEditCustomer (id, form){
+export async function postEditCustomer(id, form) {
     const formData = new FormData(form);
 
     try {
@@ -53,15 +44,12 @@ export async function postEditCustomer (id, form){
             },
         });
 
-        alert(response.data);
-
-        window.location.replace(`${BASE_URL}/customers`);
+        showSuccessMessageAndRedirect(response.data, BASE_URL);
 
     } catch (error) {
-        if (error.response) {
-            console.log(error.response.status)
-        } else {
-            console.log(error.message)
-        }
+        console.log(error.message)
+        showErrorMessage(error.message);
     }
 }
+
+

@@ -1,66 +1,16 @@
-const form = document.getElementById('customer_form');
+import { setError, setSuccess } from "../utils/validationFeedback.js";
 
 const full_name = document.getElementById('name');
 const email = document.getElementById('email');
 const address = document.getElementById('address');
 
-const BASE_URL = window.location.origin;
-
-
-form.addEventListener('submit', e => {
-    e.preventDefault();
-
-    if (validateFields()) {
-        postAddCustomer();
-    }
-});
-
-
-const postAddCustomer = async () => {
-    const formData = new FormData(form);
-
-    try {
-        const response = await axios.post(`${BASE_URL}/customers`, formData, {
-            headers: {
-                "Content-Type": "multipart/form-data",
-            },
-        });
-
-
-    } catch (error) {
-        if (error.response) {
-            console.log(error.response.status)
-        } else {
-            console.log(error.message)
-        }
-    }
-}
-
-
-const setError = (element, message) => {
-    const inputControl = element.parentElement;
-    const errorDisplay = inputControl.querySelector('.error');
-
-    errorDisplay.innerText = message;
-    inputControl.classList.add('error');
-    inputControl.classList.remove('success')
-}
-
-const setSuccess = element => {
-    const inputControl = element.parentElement;
-    const errorDisplay = inputControl.querySelector('.error');
-
-    errorDisplay.innerText = '';
-    inputControl.classList.add('success');
-    inputControl.classList.remove('error');
-};
 
 const isValidEmail = email => {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
 }
 
-const validateFields = () => {
+export function validateFields(){
     let isValid = true;
     let nameVal = full_name.value.trim();
     let emailVal = email.value.trim();
@@ -101,4 +51,3 @@ const validateFields = () => {
 
     return isValid;
 }
-

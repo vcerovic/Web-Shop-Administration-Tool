@@ -18,7 +18,7 @@ public class CustomerService{
 
 
     public List<Customer> findAll(){
-        return (List<Customer>) repository.findAll();
+        return repository.findAllByOrderByNameAsc();
     }
 
 

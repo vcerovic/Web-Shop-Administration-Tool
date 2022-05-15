@@ -1,6 +1,8 @@
 package com.veljko.webshop.customer;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -40,10 +42,10 @@ public class CustomerController {
     }
 
     @PostMapping
-    public String saveCustomer(@Valid @ModelAttribute("customer") Customer customer) {
+    public ResponseEntity<Object> saveCustomer(@Valid @ModelAttribute("customer") Customer customer) {
         customerService.save(customer);
 
-        return "redirect:/customers";
+        return new ResponseEntity<>("Customer is created successfully", HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")

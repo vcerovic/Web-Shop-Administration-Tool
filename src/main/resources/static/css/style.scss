@@ -28,11 +28,12 @@ body {
   width: 90%;
   margin: 5em auto;
   display: flex;
+  justify-content: space-between;
 }
 
 //Content container
 .content-container {
-  width: 88%;
+  width: 85%;
   display: flex;
   justify-content: space-evenly;
   align-items: flex-start;

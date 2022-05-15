@@ -28,6 +28,7 @@
                           </thead>
                           <tbody>
                             <c:forEach var="customer" items="${customers}">
+
                               <tr>
                                 <td>${customer.id}</td>
                                 <td>${customer.name}</td>
@@ -39,7 +40,7 @@
                                   <a href="" class="edit-btn"
                                     ><i class="fa-solid fa-pen-to-square"></i
                                   ></a>
-                                  <a href="" class="delete-btn"
+                                  <a href="/customers/${customer.id}" class="delete-btn"
                                     ><i class="fa-solid fa-trash"></i
                                   ></a>
                                 </td>

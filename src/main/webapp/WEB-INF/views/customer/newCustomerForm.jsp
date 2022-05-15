@@ -8,7 +8,7 @@
     <head>
         <title>Add new customer</title>
         <link rel="stylesheet" href="/css/style.css" />
-        <script defer src="/js/customers.js"></script>
+        <script defer type="module" src="/js/customer/customers.js"></script>
     </head>
 
     <body>
@@ -20,7 +20,7 @@
                     <div class="form-container">
                       <div class="title">Add new customer</div>
 
-                      <form action="/" method="POST" id="customer_form">
+                      <form action="/customers" method="POST" id="customer_form">
                            <div class="field">
                              <input type="text" name="name" id="name" placeholder=" ">
                              <label for="name">Name</label>

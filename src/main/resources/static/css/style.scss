@@ -403,6 +403,42 @@ footer {
   &:hover {
     background: $primary;
   }
+
+}
+
+.error{
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: white;
+  height: 100%;
+
+  button {
+    padding: 10px 20px;
+    background-color: white;
+    color: $primary;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.15em;
+    font-weight: bold;
+    margin-top: 20px;
+
+    &:hover{
+    
+      background-color: $primary;
+      
+      a{
+        color: white;
+      }
+    }
+
+    a {
+      text-decoration: none;
+      color: $primary;
+    }
+  }
 }
 
 //Preloader

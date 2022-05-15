@@ -20,7 +20,7 @@
                     <div class="form-container">
                     <c:if test = "${form_type == 'new'}">
                       <div class="title">Add new customer</div>
-                          <form action="/customers" method="POST" id="customer_form">
+                          <form action="/customers" method="POST" id="new_customer_form">
                                <div class="field">
                                  <input type="text" name="name" id="name" placeholder=" ">
                                  <label for="name">Name</label>
@@ -48,19 +48,20 @@
 
                     <c:if test = "${form_type == 'edit'}">
                       <div class="title">Edit ${customer.name}</div>
-                          <form action="/customers/${customer.id}" method="POST" id="customer_form">
+                          <form action="/customers/${customer.id}" method="POST" id="edit_customer_form">
+                            <input type="hidden" id="customer_id" name="customer_id" value="${customer.id}">
                                <div class="field">
-                                 <input type="text" name="name" id="name" placeholder=" ">
+                                 <input type="text" name="name" id="name" value="${customer.name}" placeholder=" ">
                                  <label for="name">Name</label>
                                  <div class="error"></div>
                                </div>
                                <div class="field">
-                                 <input type="text" name="email" id="email" placeholder=" ">
+                                 <input type="text" name="email" id="email" value="${customer.email}" placeholder=" ">
                                  <label for="email">Email Address</label>
                                  <div class="error"></div>
                                </div>
                                <div class="field">
-                                 <input type="text" name="address" id="address" placeholder=" ">
+                                 <input type="text" name="address" id="address" value="${customer.address}" placeholder=" ">
                                  <label for="address">Address</label>
                                  <div class="error"></div>
                                </div>

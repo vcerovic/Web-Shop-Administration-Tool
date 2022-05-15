@@ -68,8 +68,10 @@ public class CustomerController {
     }
 
     @PutMapping("/{id}")
-    public void updateCustomer(@ModelAttribute("customer") Customer customer){
-        System.out.println(customer);
+    public ResponseEntity<Object> updateCustomer(@PathVariable(value = "id") Integer id, @Valid @ModelAttribute("customer") Customer customer){
+        customerService.update(id, customer);
+
+        return new ResponseEntity<>("Customer successfully changed", HttpStatus.OK);
     }
 
 

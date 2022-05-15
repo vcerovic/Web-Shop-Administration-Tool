@@ -41,3 +41,27 @@ export async function postDeleteCustomer (url){
         }
     }
 }
+
+//EDIT CUSTOMER
+export async function postEditCustomer (id, form){
+    const formData = new FormData(form);
+
+    try {
+        const response = await axios.put(`${BASE_URL}/customers/${id}`, formData, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
+        });
+
+        alert(response.data);
+
+        window.location.replace(`${BASE_URL}/customers`);
+
+    } catch (error) {
+        if (error.response) {
+            console.log(error.response.status)
+        } else {
+            console.log(error.message)
+        }
+    }
+}

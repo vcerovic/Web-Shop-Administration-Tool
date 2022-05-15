@@ -1,14 +1,28 @@
 import {validateFields} from './validateCustomer.js';
-import {postAddCustomer} from './customerAPI.js';
+import {postAddCustomer, postEditCustomer} from './customerAPI.js';
 
-const form = document.getElementById('customer_form');
+const newCustomerForm = document.getElementById('new_customer_form');
+const editCustomerForm = document.getElementById('edit_customer_form');
 
-
-form.addEventListener('submit', e => {
-    e.preventDefault();
-
+if(newCustomerForm != null){
+    newCustomerForm.addEventListener('submit', e => {
+        e.preventDefault();
     
-    if (validateFields()) {
-        postAddCustomer(form);
-    }
-});
+        
+        if (validateFields()) {
+            postAddCustomer(newCustomerForm);
+        }
+    });
+}
+
+if(editCustomerForm != null){
+    editCustomerForm.addEventListener('submit', e => {
+        e.preventDefault();
+
+        if(validateFields()){
+            let customerId = document.getElementById('customer_id').value;
+            postEditCustomer(customerId, editCustomerForm);
+        }
+    })
+}
+

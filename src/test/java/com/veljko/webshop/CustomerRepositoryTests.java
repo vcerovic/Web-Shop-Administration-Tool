@@ -12,8 +12,7 @@ import org.springframework.test.annotation.Rollback;
 @DataJpaTest
 @Rollback()
 public class CustomerRepositoryTests {
-
-
+    
     private final CustomerRepository customerRepository;
 
     @Autowired
@@ -49,7 +48,7 @@ public class CustomerRepositoryTests {
         customerRepository.save(customer2);
         customerRepository.save(customer3);
 
-        Customer customerWithMostMoneySpent = customerRepository.findTopByOrderBySpentDesc();
+        Customer customerWithMostMoneySpent = customerRepository.findTopByOrderBySpentDesc().get();
 
 
         Assertions.assertThat(customerWithMostMoneySpent).isNotNull();
@@ -78,23 +77,10 @@ public class CustomerRepositoryTests {
         customerRepository.save(customer2);
         customerRepository.save(customer3);
 
-        Customer customerWithMostPurchases = customerRepository.findTopByOrderByPurchasesDesc();
+        Customer customerWithMostPurchases = customerRepository.findTopByOrderByPurchasesDesc().get();
 
         Assertions.assertThat(customerWithMostPurchases).isNotNull();
         Assertions.assertThat(customerWithMostPurchases.getPurchases()).isEqualTo(8);
         Assertions.assertThat(customerWithMostPurchases.getName()).isEqualTo("Aleksa");
-    }
-
-
-    @Test
-    void testFindCustomerWithMostMoneySpentIfNull() {
-        Customer customerWithMostMoneySpent = customerRepository.findTopByOrderBySpentDesc();
-        Assertions.assertThat(customerWithMostMoneySpent).isNull();
-    }
-
-    @Test
-    void testFindCustomerWithMostPurchasesIfNull() {
-        Customer customerWithMostPurchases = customerRepository.findTopByOrderByPurchasesDesc();
-        Assertions.assertThat(customerWithMostPurchases).isNull();
     }
 }

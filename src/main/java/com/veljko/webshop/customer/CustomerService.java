@@ -50,48 +50,49 @@ public class CustomerService {
         return customer;
     }
 
-    public void updateCustomer(Integer id, Customer customer) {
-        Customer cust = findCustomerById(id);
+    public void updateCustomer(Integer id, Customer inCustomer) {
+        Customer customer = findCustomerById(id);
 
-        if (cust.getEmail().equals(customer.getEmail())) {
-            customerRepository.save(updateCustomer(customer, cust));
+        if (customer.getEmail().equals(inCustomer.getEmail())) {
+            customerRepository.save(updateCustomer(inCustomer, customer));
         } else {
-            if (validUniqueCustomerEmail(customer.getEmail())) {
-                customerRepository.save(updateCustomer(customer, cust));
+            if (validUniqueCustomerEmail(inCustomer.getEmail())) {
+                customerRepository.save(updateCustomer(inCustomer, customer));
             }
         }
 
-
     }
 
-    private Customer updateCustomer(Customer customer, Customer cust) {
-        cust.setId(customer.getId());
-        cust.setName(customer.getName());
-        cust.setAddress(customer.getAddress());
-        cust.setEmail(customer.getEmail());
-        cust.setPurchases(customer.getPurchases());
-        cust.setSpent(customer.getSpent());
+    private Customer updateCustomer(Customer oldCustomer, Customer newCustomer) {
+        newCustomer.setId(oldCustomer.getId());
+        newCustomer.setName(oldCustomer.getName());
+        newCustomer.setAddress(oldCustomer.getAddress());
+        newCustomer.setEmail(oldCustomer.getEmail());
+        newCustomer.setPurchases(oldCustomer.getPurchases());
+        newCustomer.setSpent(oldCustomer.getSpent());
 
-        return cust;
+        return newCustomer;
     }
 
     public Customer findCustomerWithMostMoneySpent() {
-        return customerRepository.findTopByOrderBySpentDesc();
+        Optional<Customer> customer = customerRepository.findTopByOrderBySpentDesc();
+
+        return customer.orElse(null);
+
     }
 
     public Customer findCustomerWithMostPurchases() {
-        return customerRepository.findTopByOrderByPurchasesDesc();
+        Optional<Customer> customer = customerRepository.findTopByOrderByPurchasesDesc();
+
+        return customer.orElse(null);
     }
 
     public boolean validUniqueCustomerEmail(String email) {
-        Customer customerCheck = customerRepository.findByEmail(email);
-
-        if (customerCheck == null) {
-            return true;
-        } else {
+        if (customerRepository.findByEmail(email).isPresent()) {
             throw new CustomerEmailAlreadyExistsException("Customer with " + email + " already exists.");
+        } else {
+            return true;
         }
-
     }
 
     public long countAll() {

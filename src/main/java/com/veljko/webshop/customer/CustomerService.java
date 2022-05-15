@@ -1,6 +1,7 @@
 package com.veljko.webshop.customer;
 
-import com.veljko.webshop.customer.exception.CustomerEmailAlreadyExists;
+import com.veljko.webshop.customer.exception.CustomerEmailAlreadyExistsException;
+import com.veljko.webshop.customer.exception.CustomerNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,7 +44,7 @@ public class CustomerService {
         if (result.isPresent()) {
             customer = result.get();
         } else {
-            throw new RuntimeException("Did not find customer id - " + id);
+            throw new CustomerNotFoundException("Did not find customer id - " + id);
         }
 
         return customer;
@@ -88,7 +89,7 @@ public class CustomerService {
         if (customerCheck == null) {
             return true;
         } else {
-            throw new CustomerEmailAlreadyExists("Customer with " + email + " already exists.");
+            throw new CustomerEmailAlreadyExistsException("Customer with " + email + " already exists.");
         }
 
     }

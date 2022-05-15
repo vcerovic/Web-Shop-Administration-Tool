@@ -1,6 +1,7 @@
 package com.veljko.webshop.customer;
 
-import com.veljko.webshop.customer.exception.CustomerEmailAlreadyExists;
+import com.veljko.webshop.customer.exception.CustomerEmailAlreadyExistsException;
+import com.veljko.webshop.customer.exception.CustomerNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -50,7 +51,7 @@ public class CustomerController {
             customerService.save(customer);
             return new ResponseEntity<>("Customer is created successfully", HttpStatus.CREATED);
 
-        } catch (CustomerEmailAlreadyExists e) {
+        } catch (CustomerEmailAlreadyExistsException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
         }
 
@@ -58,9 +59,12 @@ public class CustomerController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteCustomer(@PathVariable(value = "id") Integer id) {
-        customerService.deleteById(id);
-
-        return new ResponseEntity<>("Customer successfully deleted", HttpStatus.OK);
+        try {
+            customerService.deleteById(id);
+            return new ResponseEntity<>("Customer successfully deleted", HttpStatus.OK);
+        } catch (CustomerNotFoundException exception) {
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping("/{id}/edit")
@@ -75,9 +79,13 @@ public class CustomerController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Object> updateCustomer(@PathVariable(value = "id") Integer id, @Valid @ModelAttribute("customer") Customer customer) {
-        customerService.update(id, customer);
+        try {
+            customerService.update(id, customer);
+            return new ResponseEntity<>("Customer successfully changed", HttpStatus.OK);
 
-        return new ResponseEntity<>("Customer successfully changed", HttpStatus.OK);
+        } catch (CustomerEmailAlreadyExistsException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+        }
     }
 
 

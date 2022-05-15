@@ -4,6 +4,7 @@ import {postAddCustomer, postEditCustomer} from './customerAPI.js';
 const newCustomerForm = document.getElementById('new_customer_form');
 const editCustomerForm = document.getElementById('edit_customer_form');
 
+//NEW CUSTOMER FORM
 if(newCustomerForm != null){
     newCustomerForm.addEventListener('submit', e => {
         e.preventDefault();
@@ -15,6 +16,7 @@ if(newCustomerForm != null){
     });
 }
 
+//EDIT CUSTOMER FORM
 if(editCustomerForm != null){
     editCustomerForm.addEventListener('submit', e => {
         e.preventDefault();

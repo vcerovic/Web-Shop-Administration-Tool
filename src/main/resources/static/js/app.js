@@ -6,5 +6,5 @@ window.addEventListener("load", () => {
         setTimeout(() => {
             preloader.parentNode.removeChild(preloader);
         }, 200)
-    }, 350);
+    }, 300);
 });

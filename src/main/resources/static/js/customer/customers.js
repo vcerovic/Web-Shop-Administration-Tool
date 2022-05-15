@@ -2,6 +2,7 @@ import { postDeleteCustomer } from "./customerAPI.js";
 
 const deleteBtns = document.getElementsByClassName('delete-btn');
 
+//HANDLE DELETE BUTTONS
 for (let i = 0; i < deleteBtns.length; i++) {
     const btn = deleteBtns[i];
 

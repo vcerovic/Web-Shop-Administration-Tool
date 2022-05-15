@@ -1,19 +1,18 @@
-import {validateFields} from './validateCustomer.js';
-import {postAddCustomer} from './customerAPI.js';
+import { postDeleteCustomer } from "./customerAPI.js";
 
-const form = document.getElementById('customer_form');
+const deleteBtns = document.getElementsByClassName('delete-btn');
 
-console.log("hello");
+for (let i = 0; i < deleteBtns.length; i++) {
+    const btn = deleteBtns[i];
 
-form.addEventListener('submit', e => {
-    e.preventDefault();
+    btn.addEventListener('click', e => {
+        e.preventDefault();
 
-    
-    if (validateFields()) {
-        postAddCustomer();
-    }
-});
-
+        if (window.confirm("Are you sure you want to delete this Customer?")) {
+            postDeleteCustomer(btn.href);
+        }         
+    })
+}
 
 
 

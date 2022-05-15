@@ -37,8 +37,10 @@ public class CustomerController {
     }
 
     @GetMapping("/new")
-    public String showAddCustomerForm(){
-        return "customer/newCustomerForm";
+    public String showAddCustomerForm(Model model){
+        model.addAttribute("form_type", "new");
+
+        return "customer/customerForm";
     }
 
     @PostMapping
@@ -49,13 +51,20 @@ public class CustomerController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteCustomer(@PathVariable(value = "id") Integer id){
-        System.out.println(id);
+    public ResponseEntity<Object> deleteCustomer(@PathVariable(value = "id") Integer id){
+        customerService.deleteById(id);
+
+        return new ResponseEntity<>("Customer successfully deleted", HttpStatus.OK);
     }
 
     @GetMapping("/{id}/edit")
-    public void showEditCustomerForm(@PathVariable(value = "id") Integer id){
-        System.out.println("show edit form");
+    public String showEditCustomerForm(@PathVariable(value = "id") Integer id, Model model){
+        Customer customer = customerService.findById(id);
+
+        model.addAttribute("form_type", "edit");
+        model.addAttribute("customer", customer);
+
+        return "customer/customerForm";
     }
 
     @PutMapping("/{id}")

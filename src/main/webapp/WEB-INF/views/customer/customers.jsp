@@ -8,6 +8,7 @@
     <head>
         <title>Customers</title>
         <link rel="stylesheet" href="/css/style.css" />
+           <script defer type="module" src="/js/customer/customers.js"></script>
     </head>
     <body>
           <div id="wrapper">
@@ -37,7 +38,7 @@
                                 <td>${customer.purchases}</td>
                                 <td>${customer.spent}</td>
                                 <td>
-                                  <a href="" class="edit-btn"
+                                  <a href="/customers/${customer.id}/edit" class="edit-btn"
                                     ><i class="fa-solid fa-pen-to-square"></i
                                   ></a>
                                   <a href="/customers/${customer.id}" class="delete-btn"
@@ -77,10 +78,5 @@
                     </div>
 
             <%@ include file="../components/footer.jsp" %>
-
-            <script
-              src="https://kit.fontawesome.com/408283dcd0.js"
-              crossorigin="anonymous"
-            ></script>
     </body>
 </html>

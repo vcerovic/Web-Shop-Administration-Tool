@@ -22,8 +22,8 @@ public class CustomerService{
     }
 
 
-    public Customer save(Customer customer){
-        return repository.save(customer);
+    public void save(Customer customer){
+        repository.save(customer);
     }
 
 

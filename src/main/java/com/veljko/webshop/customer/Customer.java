@@ -23,7 +23,6 @@ public class Customer {
 
     @NotBlank
     @Email
-    @Size(min = 10, max = 60, message = "Email must be between 10 and 60 characters")
     private String email;
 
     @NotBlank

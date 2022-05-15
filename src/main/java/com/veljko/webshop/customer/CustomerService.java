@@ -11,33 +11,33 @@ import java.util.Optional;
 @Service
 public class CustomerService {
 
-    private final CustomerRepository repository;
+    private final CustomerRepository customerRepository;
 
     @Autowired
-    public CustomerService(CustomerRepository repository) {
-        this.repository = repository;
+    public CustomerService(CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
     }
 
 
-    public List<Customer> findAll() {
-        return repository.findAllByOrderByNameAsc();
+    public List<Customer> findAllCustomers() {
+        return customerRepository.findAllByOrderByNameAsc();
     }
 
 
-    public void save(Customer customer) {
+    public void saveCustomer(Customer customer) {
         if (validUniqueCustomerEmail(customer.getEmail())) {
-            repository.save(customer);
+            customerRepository.save(customer);
         }
     }
 
 
-    public void deleteById(Integer id) {
-        repository.deleteById(id);
+    public void deleteCustomerById(Integer id) {
+        customerRepository.deleteById(id);
     }
 
 
-    public Customer findById(Integer id) {
-        Optional<Customer> result = repository.findById(id);
+    public Customer findCustomerById(Integer id) {
+        Optional<Customer> result = customerRepository.findById(id);
 
         Customer customer = null;
 
@@ -50,14 +50,14 @@ public class CustomerService {
         return customer;
     }
 
-    public void update(Integer id, Customer customer) {
-        Customer cust = findById(id);
+    public void updateCustomer(Integer id, Customer customer) {
+        Customer cust = findCustomerById(id);
 
         if (cust.getEmail().equals(customer.getEmail())) {
-            repository.save(updateCustomer(customer, cust));
+            customerRepository.save(updateCustomer(customer, cust));
         } else {
             if (validUniqueCustomerEmail(customer.getEmail())) {
-                repository.save(updateCustomer(customer, cust));
+                customerRepository.save(updateCustomer(customer, cust));
             }
         }
 
@@ -76,15 +76,15 @@ public class CustomerService {
     }
 
     public Customer findCustomerWithMostMoneySpent() {
-        return repository.findTopByOrderBySpentDesc();
+        return customerRepository.findTopByOrderBySpentDesc();
     }
 
     public Customer findCustomerWithMostPurchases() {
-        return repository.findTopByOrderByPurchasesDesc();
+        return customerRepository.findTopByOrderByPurchasesDesc();
     }
 
     public boolean validUniqueCustomerEmail(String email) {
-        Customer customerCheck = repository.findByEmail(email);
+        Customer customerCheck = customerRepository.findByEmail(email);
 
         if (customerCheck == null) {
             return true;
@@ -95,6 +95,6 @@ public class CustomerService {
     }
 
     public long countAll() {
-        return repository.count();
+        return customerRepository.count();
     }
 }

@@ -29,8 +29,8 @@ export function validateFields(){
     if (emailVal === '') {
         setError(email, 'Email is required');
         isValid = false;
-    } else if (emailVal.length > 60 || emailVal.length < 10) {
-        setError(email, 'Email must be between 10 and 60 characters');
+    } else if (emailVal.length > 60 ) {
+        setError(email, 'Email can only be 60 characters long.');
         isValid = false;
     } else if (!isValidEmail(emailVal)) {
         setError(email, 'Provide a valid email address');

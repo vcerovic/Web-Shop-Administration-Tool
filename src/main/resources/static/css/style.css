@@ -432,7 +432,7 @@ footer p {
   background: #2f2f30;
 }
 
-.error {
+.errorPage {
   margin: 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -451,7 +451,7 @@ footer p {
   height: 100%;
 }
 
-.error button {
+.errorPage button {
   padding: 10px 20px;
   background-color: white;
   color: #2f2f30;
@@ -462,15 +462,15 @@ footer p {
   margin-top: 20px;
 }
 
-.error button:hover {
+.errorPage button:hover {
   background-color: #2f2f30;
 }
 
-.error button:hover a {
+.errorPage button:hover a {
   color: white;
 }
 
-.error button a {
+.errorPage button a {
   text-decoration: none;
   color: #2f2f30;
 }

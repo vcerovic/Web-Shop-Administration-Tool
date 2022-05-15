@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
-    <div class="error">
+    <div class="errorPage">
         <h1><i class="fa-solid fa-triangle-exclamation"></i> Something went wrong</h1>
         <button><a href="/customers">Go back</button>
 

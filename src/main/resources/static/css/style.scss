@@ -309,6 +309,7 @@ body {
     &.error {
       input{
         border-color: #d61717;
+      
       }
 
       &:not(:placeholder-shown)  label {
@@ -406,7 +407,7 @@ footer {
 
 }
 
-.error{
+.errorPage{
   margin: 0 auto;
   display: flex;
   align-items: center;

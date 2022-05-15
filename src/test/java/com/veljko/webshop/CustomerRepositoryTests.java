@@ -13,17 +13,22 @@ import org.springframework.test.annotation.Rollback;
 @Rollback()
 public class CustomerRepositoryTests {
 
+
+    private final CustomerRepository customerRepository;
+
     @Autowired
-    private CustomerRepository repository;
+    public CustomerRepositoryTests(CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
+    }
 
     @BeforeEach
-    void destoryAll(){
-        repository.deleteAll();
+    void destoryAll() {
+        customerRepository.deleteAll();
     }
 
 
     @Test
-    void testFindCustomerWithMostMoneySpent(){
+    void testFindCustomerWithMostMoneySpent() {
         Customer customer1 = new Customer(
                 "Veljko",
                 "veljko@gmail.com",
@@ -40,11 +45,11 @@ public class CustomerRepositoryTests {
                 "Nist", 8, 12000);
 
 
-        repository.save(customer1);
-        repository.save(customer2);
-        repository.save(customer3);
+        customerRepository.save(customer1);
+        customerRepository.save(customer2);
+        customerRepository.save(customer3);
 
-        Customer customerWithMostMoneySpent = repository.findTopByOrderBySpentDesc();
+        Customer customerWithMostMoneySpent = customerRepository.findTopByOrderBySpentDesc();
 
 
         Assertions.assertThat(customerWithMostMoneySpent).isNotNull();
@@ -53,7 +58,7 @@ public class CustomerRepositoryTests {
     }
 
     @Test
-    void testFindCustomerWithMostPurchases(){
+    void testFindCustomerWithMostPurchases() {
         Customer customer1 = new Customer(
                 "Veljko",
                 "veljko@gmail.com",
@@ -69,11 +74,11 @@ public class CustomerRepositoryTests {
                 "Aleksa@gmail.com",
                 "Nist", 8, 12000);
 
-        repository.save(customer1);
-        repository.save(customer2);
-        repository.save(customer3);
+        customerRepository.save(customer1);
+        customerRepository.save(customer2);
+        customerRepository.save(customer3);
 
-        Customer customerWithMostPurchases = repository.findTopByOrderByPurchasesDesc();
+        Customer customerWithMostPurchases = customerRepository.findTopByOrderByPurchasesDesc();
 
         Assertions.assertThat(customerWithMostPurchases).isNotNull();
         Assertions.assertThat(customerWithMostPurchases.getPurchases()).isEqualTo(8);
@@ -82,14 +87,14 @@ public class CustomerRepositoryTests {
 
 
     @Test
-    void testFindCustomerWithMostMoneySpentIfNull(){
-        Customer customerWithMostMoneySpent = repository.findTopByOrderBySpentDesc();
+    void testFindCustomerWithMostMoneySpentIfNull() {
+        Customer customerWithMostMoneySpent = customerRepository.findTopByOrderBySpentDesc();
         Assertions.assertThat(customerWithMostMoneySpent).isNull();
     }
 
     @Test
-    void testFindCustomerWithMostPurchasesIfNull(){
-        Customer customerWithMostPurchases = repository.findTopByOrderByPurchasesDesc();
+    void testFindCustomerWithMostPurchasesIfNull() {
+        Customer customerWithMostPurchases = customerRepository.findTopByOrderByPurchasesDesc();
         Assertions.assertThat(customerWithMostPurchases).isNull();
     }
 }

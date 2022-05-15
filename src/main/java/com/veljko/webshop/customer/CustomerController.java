@@ -25,7 +25,7 @@ public class CustomerController {
 
     @GetMapping
     public String listAllCustomers(Model model) {
-        List<Customer> customers = customerService.findAll();
+        List<Customer> customers = customerService.findAllCustomers();
         Customer customerWithMostMoneySpent = customerService.findCustomerWithMostMoneySpent();
         Customer customerWithMostPurchases = customerService.findCustomerWithMostPurchases();
         long totalCustomers = customerService.countAll();
@@ -48,7 +48,7 @@ public class CustomerController {
     @PostMapping
     public ResponseEntity<Object> saveCustomer(@Valid @ModelAttribute("customer") Customer customer) {
         try {
-            customerService.save(customer);
+            customerService.saveCustomer(customer);
             return new ResponseEntity<>("Customer is created successfully", HttpStatus.CREATED);
 
         } catch (CustomerEmailAlreadyExistsException e) {
@@ -60,7 +60,7 @@ public class CustomerController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteCustomer(@PathVariable(value = "id") Integer id) {
         try {
-            customerService.deleteById(id);
+            customerService.deleteCustomerById(id);
             return new ResponseEntity<>("Customer successfully deleted", HttpStatus.OK);
         } catch (CustomerNotFoundException exception) {
             return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
@@ -69,7 +69,7 @@ public class CustomerController {
 
     @GetMapping("/{id}/edit")
     public String showEditCustomerForm(@PathVariable(value = "id") Integer id, Model model) {
-        Customer customer = customerService.findById(id);
+        Customer customer = customerService.findCustomerById(id);
 
         model.addAttribute("form_type", "edit");
         model.addAttribute("customer", customer);
@@ -80,7 +80,7 @@ public class CustomerController {
     @PutMapping("/{id}")
     public ResponseEntity<Object> updateCustomer(@PathVariable(value = "id") Integer id, @Valid @ModelAttribute("customer") Customer customer) {
         try {
-            customerService.update(id, customer);
+            customerService.updateCustomer(id, customer);
             return new ResponseEntity<>("Customer successfully changed", HttpStatus.OK);
 
         } catch (CustomerEmailAlreadyExistsException e) {

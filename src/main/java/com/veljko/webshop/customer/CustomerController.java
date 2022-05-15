@@ -45,9 +45,14 @@ public class CustomerController {
 
     @PostMapping
     public ResponseEntity<Object> saveCustomer(@Valid @ModelAttribute("customer") Customer customer) {
-        customerService.save(customer);
+        try{
+            customerService.save(customer);
 
-        return new ResponseEntity<>("Customer is created successfully", HttpStatus.CREATED);
+            return new ResponseEntity<>("Customer is created successfully", HttpStatus.CREATED);
+        } catch (RuntimeException exception){
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.CONFLICT);
+        }
+
     }
 
     @DeleteMapping("/{id}")

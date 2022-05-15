@@ -16,8 +16,7 @@ export async function postAddCustomer(form) {
         showSuccessMessageAndRedirect(response.data, BASE_URL);
 
     } catch (error) {
-        console.log(error.message)
-        showErrorMessage(error.message);
+        showErrorMessage(error.response.data);
     }
 }
 
@@ -28,8 +27,7 @@ export async function postDeleteCustomer(url) {
         showSuccessMessageAndRedirect(response.data, BASE_URL);
 
     } catch (error) {
-        console.log(error.message)
-        showErrorMessage(error.message);
+        showErrorMessage(error.response.data);
     }
 }
 
@@ -47,8 +45,7 @@ export async function postEditCustomer(id, form) {
         showSuccessMessageAndRedirect(response.data, BASE_URL);
 
     } catch (error) {
-        console.log(error.message)
-        showErrorMessage(error.message);
+        showErrorMessage(error.response.data);
     }
 }
 

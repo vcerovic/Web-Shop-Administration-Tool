@@ -23,7 +23,9 @@ public class CustomerService{
 
 
     public void save(Customer customer){
-        repository.save(customer);
+        if(validUniqueCustomerEmail(customer.getEmail())){
+            repository.save(customer);
+        }
     }
 
 
@@ -47,7 +49,7 @@ public class CustomerService{
         return customer;
     }
 
-    public Customer update(Integer id, Customer customer){
+    public void update(Integer id, Customer customer){
         Customer cust = findById(id);
         cust.setId(customer.getId());
         cust.setName(customer.getName());
@@ -56,7 +58,7 @@ public class CustomerService{
         cust.setPurchases(customer.getPurchases());
         cust.setSpent(customer.getSpent());
 
-        return repository.save(cust);
+        repository.save(cust);
     }
 
     public Customer findCustomerWithMostMoneySpent(){
@@ -67,6 +69,16 @@ public class CustomerService{
         return repository.findTopByOrderByPurchasesDesc();
     }
 
+    public boolean validUniqueCustomerEmail(String email){
+        Customer customerCheck = repository.findByEmail(email);
+
+        if(customerCheck == null){
+            return true;
+        } else {
+            throw new RuntimeException("Customer with " + email + " already exists.");
+        }
+
+    }
     public long countAll(){
         return repository.count();
     }

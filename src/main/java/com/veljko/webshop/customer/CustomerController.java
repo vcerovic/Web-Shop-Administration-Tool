@@ -1,5 +1,6 @@
 package com.veljko.webshop.customer;
 
+import com.veljko.webshop.customer.exception.CustomerEmailAlreadyExists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +23,7 @@ public class CustomerController {
     }
 
     @GetMapping
-    public String listAllCustomers(Model model){
+    public String listAllCustomers(Model model) {
         List<Customer> customers = customerService.findAll();
         Customer customerWithMostMoneySpent = customerService.findCustomerWithMostMoneySpent();
         Customer customerWithMostPurchases = customerService.findCustomerWithMostPurchases();
@@ -37,7 +38,7 @@ public class CustomerController {
     }
 
     @GetMapping("/new")
-    public String showAddCustomerForm(Model model){
+    public String showAddCustomerForm(Model model) {
         model.addAttribute("form_type", "new");
 
         return "customer/customerForm";
@@ -45,25 +46,25 @@ public class CustomerController {
 
     @PostMapping
     public ResponseEntity<Object> saveCustomer(@Valid @ModelAttribute("customer") Customer customer) {
-        try{
+        try {
             customerService.save(customer);
-
             return new ResponseEntity<>("Customer is created successfully", HttpStatus.CREATED);
-        } catch (RuntimeException exception){
-            return new ResponseEntity<>(exception.getMessage(), HttpStatus.CONFLICT);
+
+        } catch (CustomerEmailAlreadyExists e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
         }
 
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deleteCustomer(@PathVariable(value = "id") Integer id){
+    public ResponseEntity<Object> deleteCustomer(@PathVariable(value = "id") Integer id) {
         customerService.deleteById(id);
 
         return new ResponseEntity<>("Customer successfully deleted", HttpStatus.OK);
     }
 
     @GetMapping("/{id}/edit")
-    public String showEditCustomerForm(@PathVariable(value = "id") Integer id, Model model){
+    public String showEditCustomerForm(@PathVariable(value = "id") Integer id, Model model) {
         Customer customer = customerService.findById(id);
 
         model.addAttribute("form_type", "edit");
@@ -73,13 +74,11 @@ public class CustomerController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> updateCustomer(@PathVariable(value = "id") Integer id, @Valid @ModelAttribute("customer") Customer customer){
+    public ResponseEntity<Object> updateCustomer(@PathVariable(value = "id") Integer id, @Valid @ModelAttribute("customer") Customer customer) {
         customerService.update(id, customer);
 
         return new ResponseEntity<>("Customer successfully changed", HttpStatus.OK);
     }
-
-
 
 
 }

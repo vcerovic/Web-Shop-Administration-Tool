@@ -3,6 +3,9 @@ package com.veljko.webshop.product;
 import com.veljko.webshop.customer.Customer;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Entity
@@ -14,9 +17,23 @@ public class Product {
     @Column(name = "product_id")
     private Integer id;
 
-    private String name, description;
+    @NotBlank
+    @Size(min = 4, max = 20, message = "Name must be between 4 and 45 characters")
+    private String name;
+
+    @NotBlank
+    @Size(min = 10, max = 300, message = "Description must be between 4 and 45 characters")
+    private String description;
+
+    @NotNull
+    @Size(min = 1, message = "At least one product is required")
     private int stock;
+
+    @NotNull
+    @Size(min = 10, message = "Price must be larger then 10")
     private int price;
+
+    @NotBlank
     private String image;
 
     @Column(name = "times_sold")

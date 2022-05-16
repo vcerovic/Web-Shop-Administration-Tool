@@ -3,6 +3,7 @@ package com.veljko.webshop;
 import com.veljko.webshop.product.Product;
 import com.veljko.webshop.product.ProductRepository;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,31 +15,30 @@ import org.springframework.test.annotation.Rollback;
 @Rollback()
 public class ProductRepositoryTests {
 
-    @Autowired
-    private ProductRepository repository;
+    private final ProductRepository productRepository;
 
-    @BeforeEach
-    void destoryAll() {
-        repository.deleteAll();
+    @Autowired
+    public ProductRepositoryTests(ProductRepository productRepository) {
+        this.productRepository = productRepository;
     }
 
-    @Test
-    void testFindMostExpensiveProduct() {
+    @BeforeEach
+    void setUp() {
         Product product = new Product(
                 "Yugo",
                 "Test",
                 5,
                 28000,
                 "slika1.jpg",
-                5);
+                20);
 
         Product product2 = new Product(
                 "BMW",
                 "Test",
-                20,
+                15,
                 80000,
                 "slika2.jpg",
-                5);
+                15);
 
         Product product3 = new Product(
                 "Audi",
@@ -48,11 +48,20 @@ public class ProductRepositoryTests {
                 "slika3.jpg",
                 5);
 
-        repository.save(product);
-        repository.save(product2);
-        repository.save(product3);
+        productRepository.save(product);
+        productRepository.save(product2);
+        productRepository.save(product3);
+    }
 
-        Product mostExpensiveProduct = repository.findMostExpensiveProduct();
+    @AfterEach
+    void tearDown() {
+        productRepository.deleteAll();
+    }
+
+
+    @Test
+    void testFindMostExpensiveProduct() {
+        Product mostExpensiveProduct = productRepository.findTopByOrderByPriceDesc().get();
 
         Assertions.assertThat(mostExpensiveProduct).isNotNull();
         Assertions.assertThat(mostExpensiveProduct.getName()).isEqualTo("BMW");
@@ -62,39 +71,19 @@ public class ProductRepositoryTests {
 
     @Test
     void testFindMostSoldProduct() {
-        Product product = new Product(
-                "Yugo",
-                "Test",
-                5,
-                28000,
-                "slika1.jpg",
-                56);
-
-        Product product2 = new Product(
-                "BMW",
-                "Test",
-                20,
-                80000,
-                "slika2.jpg",
-                20);
-
-        Product product3 = new Product(
-                "Audi",
-                "Test",
-                20,
-                78000,
-                "slika3.jpg",
-                5);
-
-
-        repository.save(product);
-        repository.save(product2);
-        repository.save(product3);
-
-        Product mostSoldProduct = repository.findMostSoldProduct();
+        Product mostSoldProduct = productRepository.findTopByOrderByTimesSoldDesc().get();
 
         Assertions.assertThat(mostSoldProduct).isNotNull();
         Assertions.assertThat(mostSoldProduct.getName()).isEqualTo("Yugo");
-        Assertions.assertThat(mostSoldProduct.getTimesSold()).isEqualTo(56);
+        Assertions.assertThat(mostSoldProduct.getTimesSold()).isEqualTo(20);
+    }
+
+    @Test
+    void testFindMostStockProduct() {
+        Product mostSoldProduct = productRepository.findTopByOrderByStockDesc().get();
+
+        Assertions.assertThat(mostSoldProduct).isNotNull();
+        Assertions.assertThat(mostSoldProduct.getName()).isEqualTo("Audi");
+        Assertions.assertThat(mostSoldProduct.getStock()).isEqualTo(20);
     }
 }

@@ -18,7 +18,7 @@ public class ProductRepositoryTests {
     private ProductRepository repository;
 
     @BeforeEach
-    void destoryAll(){
+    void destoryAll() {
         repository.deleteAll();
     }
 

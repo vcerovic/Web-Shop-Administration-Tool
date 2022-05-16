@@ -23,6 +23,7 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
+    //GET ALL CUSTOMERS (/customers)
     @GetMapping
     public String listAllCustomers(Model model) {
         List<Customer> customers = customerService.findAllCustomers();
@@ -38,6 +39,7 @@ public class CustomerController {
         return "customer/customers";
     }
 
+    //SHOW NEW CUSTOMER FORM (/customers/new)
     @GetMapping("/new")
     public String showAddCustomerForm(Model model) {
         model.addAttribute("form_type", "new");
@@ -45,6 +47,7 @@ public class CustomerController {
         return "customer/customerForm";
     }
 
+    //SAVE CUSTOMER (/customer)
     @PostMapping
     public ResponseEntity<String> saveCustomer(@Valid @ModelAttribute("customer") Customer customer) {
         try {
@@ -54,6 +57,7 @@ public class CustomerController {
         }
     }
 
+    //DELETE CUSTOMER (/customer/{id})
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteCustomer(@PathVariable(value = "id") Integer id) {
         try {
@@ -63,6 +67,7 @@ public class CustomerController {
         }
     }
 
+    //SHOW EDIT CUSTOMER FORM (customers/{id}/edit)
     @GetMapping("/{id}/edit")
     public String showEditCustomerForm(@PathVariable(value = "id") Integer id, Model model) {
         Customer customer = customerService.findCustomerById(id);
@@ -73,6 +78,7 @@ public class CustomerController {
         return "customer/customerForm";
     }
 
+    //UPDATE CUSTOMER (customers/{id})
     @PutMapping("/{id}")
     public ResponseEntity<String> updateCustomer(@PathVariable(value = "id") Integer id, @Valid @ModelAttribute("customer") Customer customer) {
         try {

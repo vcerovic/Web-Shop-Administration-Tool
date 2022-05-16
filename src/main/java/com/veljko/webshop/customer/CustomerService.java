@@ -51,30 +51,26 @@ public class CustomerService {
 
     //FIND BY ID
     public Customer findCustomerById(Integer id) {
-        Optional<Customer> result = customerRepository.findById(id);
-
-        Customer customer;
-
-        if (result.isEmpty()) {
-            throw new CustomerNotFoundException("Did not find customer id - " + id);
-        }
-
-        customer = result.get();
-
-        return customer;
+        return customerRepository
+                .findById(id)
+                .orElseThrow(() -> new RuntimeException("Did not find customer id - " + id));
     }
 
     //UPDATE CUSTOMER
-    public ResponseEntity<String> updateCustomer(Integer id, Customer inCustomer) {
-        Customer customer = findCustomerById(id);
+    public ResponseEntity<String> updateCustomer(Integer id, Customer newCustomer) {
+        Customer oldCustomer = findCustomerById(id);
 
-        if (!customer.getEmail().equals(inCustomer.getEmail())) {
-            if (customerRepository.findByEmail(inCustomer.getEmail()).isPresent()) {
-                throw new CustomerEmailAlreadyExistsException("Customer with " + inCustomer.getEmail() + " already exists.");
+        if (!oldCustomer.getEmail().equals(newCustomer.getEmail())) {
+            if (customerRepository.findByEmail(newCustomer.getEmail()).isPresent()) {
+                throw new CustomerEmailAlreadyExistsException("Customer with " + newCustomer.getEmail() + " already exists.");
             }
         }
 
-        customerRepository.save(updateAndReturnCustomer(inCustomer, customer));
+        if (!newCustomer.getId().equals(id)) {
+            throw new CustomerNotFoundException(("Customer's id does not match."));
+        }
+
+        customerRepository.save(newCustomer);
         return new ResponseEntity<>("Customer successfully changed", HttpStatus.OK);
     }
 
@@ -98,17 +94,5 @@ public class CustomerService {
     //COUNT ALL CUSTOMERS
     public long countAllCustomers() {
         return customerRepository.count();
-    }
-
-
-    private Customer updateAndReturnCustomer(Customer oldCustomer, Customer newCustomer) {
-        newCustomer.setId(oldCustomer.getId());
-        newCustomer.setName(oldCustomer.getName());
-        newCustomer.setAddress(oldCustomer.getAddress());
-        newCustomer.setEmail(oldCustomer.getEmail());
-        newCustomer.setPurchases(oldCustomer.getPurchases());
-        newCustomer.setSpent(oldCustomer.getSpent());
-
-        return newCustomer;
     }
 }

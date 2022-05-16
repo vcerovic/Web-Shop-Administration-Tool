@@ -46,22 +46,18 @@ public class CustomerController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> saveCustomer(@Valid @ModelAttribute("customer") Customer customer) {
+    public ResponseEntity<String> saveCustomer(@Valid @ModelAttribute("customer") Customer customer) {
         try {
-            customerService.saveCustomer(customer);
-            return new ResponseEntity<>("Customer is created successfully", HttpStatus.CREATED);
-
+            return customerService.saveCustomer(customer);
         } catch (CustomerEmailAlreadyExistsException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
         }
-
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deleteCustomer(@PathVariable(value = "id") Integer id) {
+    public ResponseEntity<String> deleteCustomer(@PathVariable(value = "id") Integer id) {
         try {
-            customerService.deleteCustomerById(id);
-            return new ResponseEntity<>("Customer successfully deleted", HttpStatus.OK);
+            return customerService.deleteCustomerById(id);
         } catch (CustomerNotFoundException exception) {
             return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
         }
@@ -78,12 +74,10 @@ public class CustomerController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> updateCustomer(@PathVariable(value = "id") Integer id, @Valid @ModelAttribute("customer") Customer customer) {
+    public ResponseEntity<String> updateCustomer(@PathVariable(value = "id") Integer id, @Valid @ModelAttribute("customer") Customer customer) {
         try {
-            customerService.updateCustomer(id, customer);
-            return new ResponseEntity<>("Customer successfully changed", HttpStatus.OK);
-
-        } catch (CustomerEmailAlreadyExistsException e) {
+            return customerService.updateCustomer(id, customer);
+        } catch (CustomerEmailAlreadyExistsException | CustomerNotFoundException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
         }
     }

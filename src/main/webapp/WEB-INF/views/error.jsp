@@ -12,6 +12,10 @@
 
     </div>
 
+            <div id="preloader">
+                                <div id="loader"></div>
+                            </div>
+
               <script defer src="/js/app.js"></script>
               <script
                 src="https://kit.fontawesome.com/408283dcd0.js"

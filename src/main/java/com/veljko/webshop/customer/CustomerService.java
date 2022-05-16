@@ -3,6 +3,8 @@ package com.veljko.webshop.customer;
 import com.veljko.webshop.customer.exception.CustomerEmailAlreadyExistsException;
 import com.veljko.webshop.customer.exception.CustomerNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,55 +26,53 @@ public class CustomerService {
     }
 
 
-    public void saveCustomer(Customer customer) {
-        if (validUniqueCustomerEmail(customer.getEmail())) {
-            customerRepository.save(customer);
+    public ResponseEntity<String> saveCustomer(Customer customer) {
+        if (customerRepository.findByEmail(customer.getEmail()).isPresent()) {
+            throw new CustomerEmailAlreadyExistsException("Customer with " + customer.getEmail() + " already exists.");
         }
+
+        customerRepository.save(customer);
+        return new ResponseEntity<>("Customer is created successfully", HttpStatus.CREATED);
     }
 
 
-    public void deleteCustomerById(Integer id) {
+    public ResponseEntity<String> deleteCustomerById(Integer id) {
+        if (customerRepository.findById(id).isEmpty()) {
+            throw new CustomerNotFoundException("Did not find customer id - " + id);
+        }
+
         customerRepository.deleteById(id);
+        return new ResponseEntity<>("Customer successfully deleted", HttpStatus.OK);
     }
 
 
     public Customer findCustomerById(Integer id) {
         Optional<Customer> result = customerRepository.findById(id);
 
-        Customer customer = null;
+        Customer customer;
 
-        if (result.isPresent()) {
-            customer = result.get();
-        } else {
+        if (result.isEmpty()) {
             throw new CustomerNotFoundException("Did not find customer id - " + id);
         }
+
+        customer = result.get();
 
         return customer;
     }
 
-    public void updateCustomer(Integer id, Customer inCustomer) {
+    public ResponseEntity<String> updateCustomer(Integer id, Customer inCustomer) {
         Customer customer = findCustomerById(id);
 
-        if (customer.getEmail().equals(inCustomer.getEmail())) {
-            customerRepository.save(updateCustomer(inCustomer, customer));
-        } else {
-            if (validUniqueCustomerEmail(inCustomer.getEmail())) {
-                customerRepository.save(updateCustomer(inCustomer, customer));
+        if (!customer.getEmail().equals(inCustomer.getEmail())) {
+            if (customerRepository.findByEmail(inCustomer.getEmail()).isPresent()) {
+                throw new CustomerEmailAlreadyExistsException("Customer with " + inCustomer.getEmail() + " already exists.");
             }
         }
 
+        customerRepository.save(updateAndReturnCustomer(inCustomer, customer));
+        return new ResponseEntity<>("Customer successfully changed", HttpStatus.OK);
     }
 
-    private Customer updateCustomer(Customer oldCustomer, Customer newCustomer) {
-        newCustomer.setId(oldCustomer.getId());
-        newCustomer.setName(oldCustomer.getName());
-        newCustomer.setAddress(oldCustomer.getAddress());
-        newCustomer.setEmail(oldCustomer.getEmail());
-        newCustomer.setPurchases(oldCustomer.getPurchases());
-        newCustomer.setSpent(oldCustomer.getSpent());
-
-        return newCustomer;
-    }
 
     public Customer findCustomerWithMostMoneySpent() {
         Optional<Customer> customer = customerRepository.findTopByOrderBySpentDesc();
@@ -87,15 +87,20 @@ public class CustomerService {
         return customer.orElse(null);
     }
 
-    public boolean validUniqueCustomerEmail(String email) {
-        if (customerRepository.findByEmail(email).isPresent()) {
-            throw new CustomerEmailAlreadyExistsException("Customer with " + email + " already exists.");
-        } else {
-            return true;
-        }
-    }
 
     public long countAll() {
         return customerRepository.count();
+    }
+
+
+    private Customer updateAndReturnCustomer(Customer oldCustomer, Customer newCustomer) {
+        newCustomer.setId(oldCustomer.getId());
+        newCustomer.setName(oldCustomer.getName());
+        newCustomer.setAddress(oldCustomer.getAddress());
+        newCustomer.setEmail(oldCustomer.getEmail());
+        newCustomer.setPurchases(oldCustomer.getPurchases());
+        newCustomer.setSpent(oldCustomer.getSpent());
+
+        return newCustomer;
     }
 }

@@ -21,11 +21,13 @@ public class CustomerService {
     }
 
 
+    //LIST ALL CUSTOMERS
     public List<Customer> findAllCustomers() {
         return customerRepository.findAllByOrderByNameAsc();
     }
 
 
+    //SAVE CUSTOMER
     public ResponseEntity<String> saveCustomer(Customer customer) {
         if (customerRepository.findByEmail(customer.getEmail()).isPresent()) {
             throw new CustomerEmailAlreadyExistsException("Customer with " + customer.getEmail() + " already exists.");
@@ -36,6 +38,7 @@ public class CustomerService {
     }
 
 
+    //DELETE CUSTOMER
     public ResponseEntity<String> deleteCustomerById(Integer id) {
         if (customerRepository.findById(id).isEmpty()) {
             throw new CustomerNotFoundException("Did not find customer id - " + id);
@@ -46,6 +49,7 @@ public class CustomerService {
     }
 
 
+    //FIND BY ID
     public Customer findCustomerById(Integer id) {
         Optional<Customer> result = customerRepository.findById(id);
 
@@ -60,6 +64,7 @@ public class CustomerService {
         return customer;
     }
 
+    //UPDATE CUSTOMER
     public ResponseEntity<String> updateCustomer(Integer id, Customer inCustomer) {
         Customer customer = findCustomerById(id);
 
@@ -74,6 +79,7 @@ public class CustomerService {
     }
 
 
+    //FIND WITH MOST MONEY SPENT
     public Customer findCustomerWithMostMoneySpent() {
         Optional<Customer> customer = customerRepository.findTopByOrderBySpentDesc();
 
@@ -81,6 +87,7 @@ public class CustomerService {
 
     }
 
+    //FIND WITH MOST PURCHASES
     public Customer findCustomerWithMostPurchases() {
         Optional<Customer> customer = customerRepository.findTopByOrderByPurchasesDesc();
 
@@ -88,7 +95,8 @@ public class CustomerService {
     }
 
 
-    public long countAll() {
+    //COUNT ALL CUSTOMERS
+    public long countAllCustomers() {
         return customerRepository.count();
     }
 

@@ -28,7 +28,7 @@ public class CustomerController {
         List<Customer> customers = customerService.findAllCustomers();
         Customer customerWithMostMoneySpent = customerService.findCustomerWithMostMoneySpent();
         Customer customerWithMostPurchases = customerService.findCustomerWithMostPurchases();
-        long totalCustomers = customerService.countAll();
+        long totalCustomers = customerService.countAllCustomers();
 
         model.addAttribute("customers", customers);
         model.addAttribute("customer_spent", customerWithMostMoneySpent);

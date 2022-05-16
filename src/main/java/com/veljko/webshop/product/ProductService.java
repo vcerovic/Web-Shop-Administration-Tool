@@ -1,5 +1,6 @@
 package com.veljko.webshop.product;
 
+import com.veljko.webshop.product.exception.ProductNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +33,7 @@ public class ProductService {
     //DELETE PRODUCT
     public ResponseEntity<String> deleteProductById(Integer id) {
         if (productRepository.findById(id).isEmpty()) {
-            throw new RuntimeException("Did not find product id - " + id);
+            throw new ProductNotFoundException("Did not find product id - " + id);
         }
 
         productRepository.deleteById(id);
@@ -44,7 +45,7 @@ public class ProductService {
     public Product findProductById(Integer id) {
         return productRepository
                 .findById(id)
-                .orElseThrow(() -> new RuntimeException("Did not find product id - " + id));
+                .orElseThrow(() -> new ProductNotFoundException("Did not find product id - " + id));
     }
 
 
@@ -53,7 +54,7 @@ public class ProductService {
         Product oldProduct = findProductById(id);
 
         if (!newProduct.getId().equals(oldProduct.getId())) {
-            throw new RuntimeException("Product's id doesn't match.");
+            throw new ProductNotFoundException("Product's id doesn't match.");
         }
 
         productRepository.save(newProduct);

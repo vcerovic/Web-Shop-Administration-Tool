@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("/products")
@@ -20,8 +21,20 @@ public class ProductController {
 
     //GET ALL PRODUCTS (/products)
     @GetMapping
-    public void listAllProducts(Model model) {
+    public String listAllProducts(Model model) {
+        List<Product> products = productService.getAllProducts();
+        Product mostSoldProduct = productService.findMostSoldProduct();
+        Product mostExpensiveProduct = productService.findMostExpensiveProduct();
+        Product mostStockProduct = productService.findMostStockProduct();
+        long totalProducts = productService.countAllProducts();
 
+        model.addAttribute("products", products);
+        model.addAttribute("most_sold_product", mostSoldProduct);
+        model.addAttribute("most_expensive_product", mostExpensiveProduct);
+        model.addAttribute("most_stock_product", mostStockProduct);
+        model.addAttribute("total_products", totalProducts);
+
+        return "product/products";
     }
 
     //SHOW NEW PRODUCT FORM (/products/new)

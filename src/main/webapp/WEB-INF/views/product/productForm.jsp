@@ -40,9 +40,11 @@
                                   <label for="description">Description:</label>
                                   <div class="error"></div>
                               </div>
+                              <input type="hidden" id="image" name="image" value="">
+
                               <div class="field image-field">
-                                  <input type="file" name="image" id="image" class="input_file"/>
-                                  <label for="image">Choose a image</label>
+                                  <input type="file" name="image_file" id="image_file" accept="image/png, image/jpeg" class="input_file"/>
+                                  <label for="image_file">Choose a image</label>
                                   <div class="error"></div>
                               </div>
 

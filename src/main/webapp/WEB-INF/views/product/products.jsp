@@ -58,8 +58,8 @@
                             <i class="fa-solid fa-hand-holding-dollar"></i>
                             <div class="stats-info">
                               <p class="stats-title">Most sold:</p>
-                              <h1>${most_sold_product.name}</h1>
-                              <p>${most_sold_product.timesSold}</p>
+                              <h1>${most_sold_product.timesSold}</h1>
+                              <p>${most_sold_product.name}</p>
                             </div>
                           </div>
 

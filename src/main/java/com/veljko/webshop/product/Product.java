@@ -3,6 +3,7 @@ package com.veljko.webshop.product;
 import com.veljko.webshop.customer.Customer;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -26,11 +27,11 @@ public class Product {
     private String description;
 
     @NotNull
-    @Size(min = 1, message = "At least one product is required")
+    @Min(value = 1, message = "At least one product is required")
     private int stock;
 
     @NotNull
-    @Size(min = 10, message = "Price must be larger then 10")
+    @Min(value = 10, message = "Price must be larger then 10")
     private int price;
 
     @NotBlank

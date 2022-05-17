@@ -10,7 +10,7 @@ if (newProductForm != null) {
         e.preventDefault();
 
         if (validateFields()) {
-            console.log("all good");
+            postCreateRequest(newProductForm, BASE_URL)
         }
     });
 }

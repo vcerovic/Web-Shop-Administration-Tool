@@ -5,6 +5,7 @@ const stock = document.getElementById('stock');
 const price = document.getElementById('price');
 const description = document.getElementById('description');
 const image = document.getElementById('image');
+const imageFile = document.getElementById('image_file');
 
 export function validateFields() {
     let isValid = true;
@@ -13,7 +14,7 @@ export function validateFields() {
     const stockVal = stock.value;
     const priceVal = price.value;
     const descriptionVal = description.value.trim();
-    const imageVal = image.files;
+    const imageFileVal = imageFile.files;
 
     if (nameVal === '') {
         setError(name, 'Name is required.');
@@ -34,7 +35,7 @@ export function validateFields() {
     } else {
         setSuccess(stock);
     }
-    
+
     if (priceVal === '') {
         setError(price, 'Price is required.');
         isValid = false;
@@ -56,12 +57,15 @@ export function validateFields() {
         setSuccess(description);
     }
 
-    if (imageVal.length === 0) {
-        setError(image, 'Image is required.');
+    if (imageFileVal.length === 0) {
+        setError(imageFile, 'Image is required.');
         isValid = false;
     } else {
-        setSuccess(image);
+        setSuccess(imageFile);
     }
+
+
+    image.value = imageFileVal[0].name;
 
     return isValid;
 

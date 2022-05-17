@@ -4,7 +4,7 @@ export function showSuccessMessageAndRedirect(message, redirect) {
         text: message,
         icon: "success",
     }).then(() => {
-        window.location.replace(redirect);
+            window.location.replace(redirect);
     })
 }
 

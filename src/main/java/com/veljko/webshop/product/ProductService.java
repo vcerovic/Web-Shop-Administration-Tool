@@ -1,12 +1,17 @@
 package com.veljko.webshop.product;
 
 import com.veljko.webshop.product.exception.ProductNotFoundException;
+import com.veljko.webshop.utils.FileUploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -25,9 +30,18 @@ public class ProductService {
     }
 
     //SAVE PRODUCT
-    public ResponseEntity<String> saveProduct(Product product) {
+    public ResponseEntity<String> saveProduct(Product product, MultipartFile image) {
+        String fileName = StringUtils.cleanPath(Objects.requireNonNull(image.getOriginalFilename()));
+        String uploadDir = "src/main/resources/static/images/";
+
+        try {
+            FileUploadUtil.saveFile(uploadDir, fileName, image);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         productRepository.save(product);
-        return new ResponseEntity<>("Customer is created successfully", HttpStatus.CREATED);
+        return new ResponseEntity<>("Product is created successfully", HttpStatus.CREATED);
     }
 
     //DELETE PRODUCT

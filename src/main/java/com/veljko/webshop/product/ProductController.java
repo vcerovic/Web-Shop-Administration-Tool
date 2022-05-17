@@ -1,9 +1,11 @@
 package com.veljko.webshop.product;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -45,8 +47,8 @@ public class ProductController {
 
     //SAVE PRODUCT (/products)
     @PostMapping
-    public void saveProduct(@Valid @ModelAttribute("product") Product product) {
-
+    public ResponseEntity<String> saveProduct(@Valid @ModelAttribute("product") Product product, @RequestParam("image_file") MultipartFile multipartFile) {
+        return productService.saveProduct(product, multipartFile);
     }
 
     //DELETE PRODUCT (/products/{id})

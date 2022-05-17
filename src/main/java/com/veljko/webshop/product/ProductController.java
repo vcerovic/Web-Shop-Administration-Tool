@@ -39,8 +39,8 @@ public class ProductController {
 
     //SHOW NEW PRODUCT FORM (/products/new)
     @GetMapping("/new")
-    public void showAddProductForm(Model model) {
-
+    public String showAddProductForm(Model model) {
+        return "product/productForm";
     }
 
     //SAVE PRODUCT (/products)

@@ -289,24 +289,25 @@ body {
   margin-top: 20px;
 }
 
-.form-container .field input {
+.form-container .field input, .form-container .field textarea {
   height: 100%;
   width: 100%;
   outline: none;
   font-size: 17px;
-  padding-left: 20px;
+  padding: 0 20px;
   border: 1px solid lightgrey;
   border-radius: 25px;
   -webkit-transition: 200ms;
   transition: 200ms;
 }
 
-.form-container .field input:focus {
+.form-container .field input:focus, .form-container .field textarea:focus {
   border-color: #792ff8;
 }
 
 .form-container .field input:focus ~ label,
-.form-container .field input:not(:placeholder-shown) ~ label {
+.form-container .field input:not(:placeholder-shown) ~ label, .form-container .field textarea:focus ~ label,
+.form-container .field textarea:not(:placeholder-shown) ~ label {
   top: 0%;
   font-size: 16px;
   color: #792ff8;
@@ -350,6 +351,25 @@ body {
           transform: translateY(-50%);
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
+}
+
+.form-container .textarea-field {
+  height: 130px !important;
+}
+
+.form-container .textarea-field textarea {
+  resize: none;
+  font-size: 20px;
+  padding: 20px;
+  font-weight: 300;
+}
+
+.form-container .image-field {
+  height: 60px !important;
+}
+
+.form-container .image-field input {
+  padding: 17px 22px !important;
 }
 
 .form-container .content {

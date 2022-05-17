@@ -261,6 +261,9 @@ body {
   form {
     padding: 20px 30px 30px 30px;
   }
+
+
+
   .field {
     height: 50px;
     width: 100%;
@@ -272,12 +275,12 @@ body {
       margin-top: 20px;
     }
 
-    input {
+    input, textarea {
       height: 100%;
       width: 100%;
       outline: none;
       font-size: 17px;
-      padding-left: 20px;
+      padding: 0 20px;
       border: 1px solid lightgrey;
       border-radius: 25px;
       transition: 200ms;
@@ -294,8 +297,7 @@ body {
         background: #fff;
         transform: translateY(-50%);
       }
-      
-
+    
     }
 
     &.success {
@@ -336,6 +338,25 @@ body {
       pointer-events: none;
       transform: translateY(-50%);
       transition: all 0.3s ease;
+    }
+  }
+
+  .textarea-field{
+      height: 130px !important;
+
+      textarea{
+        resize: none;
+        font-size: 20px;
+        padding: 20px;
+        font-weight: 300;
+      }
+  }
+
+  .image-field{
+    height: 60px !important;
+
+    input{
+      padding: 17px 22px !important;
     }
   }
 

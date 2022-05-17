@@ -1,6 +1,8 @@
-import { postDeleteCustomer } from "./customerAPI.js";
+import { postDeleteRequest } from "../utils/crudApi.js";
 
 const deleteBtns = document.getElementsByClassName('delete-btn');
+
+const BASE_URL = window.location.origin + "/customers";
 
 //HANDLE DELETE BUTTONS
 for (let i = 0; i < deleteBtns.length; i++) {
@@ -24,7 +26,7 @@ for (let i = 0; i < deleteBtns.length; i++) {
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    postDeleteCustomer(btn.href);
+                    postDeleteRequest(btn.href, BASE_URL);
 
                     swal("Customer has been deleted!", {
                         icon: "success",

@@ -18,11 +18,11 @@ public class Product {
     private Integer id;
 
     @NotBlank
-    @Size(min = 4, max = 20, message = "Name must be between 4 and 45 characters")
+    @Size(min = 4, max = 45, message = "Name must be between 4 and 45 characters")
     private String name;
 
     @NotBlank
-    @Size(min = 10, max = 300, message = "Description must be between 4 and 45 characters")
+    @Size(min = 10, max = 300, message = "Description must be between 10 and 300 characters")
     private String description;
 
     @NotNull

@@ -316,7 +316,7 @@ body {
           transform: translateY(-50%);
 }
 
-.form-container .field.success input {
+.form-container .field.success input, .form-container .field.success textarea {
   border-color: #24ae36;
 }
 
@@ -324,7 +324,7 @@ body {
   color: #24ae36;
 }
 
-.form-container .field.error input {
+.form-container .field.error input, .form-container .field.error textarea {
   border-color: #d61717;
 }
 
@@ -358,10 +358,9 @@ body {
 }
 
 .form-container .textarea-field textarea {
+  font-family: "Montserrat", sans-serif !important;
   resize: none;
-  font-size: 20px;
   padding: 20px;
-  font-weight: 300;
 }
 
 .form-container .image-field {

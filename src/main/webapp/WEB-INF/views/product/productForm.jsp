@@ -8,6 +8,7 @@
     <head>
         <title>Add new customer</title>
         <link rel="stylesheet" href="/css/style.css" />
+        <script defer type="module" src="/js/product/productForm.js"></script>
     </head>
 
     <body>
@@ -37,10 +38,12 @@
                               <div class="field textarea-field">
                                   <textarea id="description" name="description" rows="4" cols="30" placeholder=" "></textarea>
                                   <label for="description">Description:</label>
+                                  <div class="error"></div>
                               </div>
                               <div class="field image-field">
                                   <input type="file" name="image" id="image" class="input_file"/>
                                   <label for="image">Choose a image</label>
+                                  <div class="error"></div>
                               </div>
 
                             <div class="content">

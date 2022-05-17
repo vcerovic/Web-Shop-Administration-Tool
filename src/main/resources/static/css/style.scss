@@ -301,7 +301,7 @@ body {
     }
 
     &.success {
-      input{
+      input, textarea{
         border-color: #24ae36;
       }
 
@@ -311,7 +311,7 @@ body {
     }
 
     &.error {
-      input{
+      input, textarea{
         border-color: #d61717;
       
       }
@@ -345,10 +345,9 @@ body {
       height: 130px !important;
 
       textarea{
+        font-family: "Montserrat", sans-serif !important;
         resize: none;
-        font-size: 20px;
         padding: 20px;
-        font-weight: 300;
       }
   }
 

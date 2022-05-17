@@ -1,7 +1,7 @@
 package com.veljko.webshop.product;
 
 import com.veljko.webshop.product.exception.ProductNotFoundException;
-import com.veljko.webshop.utils.FileUploadUtil;
+import com.veljko.webshop.utils.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,7 +35,7 @@ public class ProductService {
         String uploadDir = "src/main/resources/static/images/";
 
         try {
-            FileUploadUtil.saveFile(uploadDir, fileName, image);
+            FileUtil.saveFile(uploadDir, fileName, image);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -46,11 +46,14 @@ public class ProductService {
 
     //DELETE PRODUCT
     public ResponseEntity<String> deleteProductById(Integer id) {
-        if (productRepository.findById(id).isEmpty()) {
+        Optional<Product> product = productRepository.findById(id);
+        if (product.isEmpty()) {
             throw new ProductNotFoundException("Did not find product id - " + id);
         }
 
+        FileUtil.deleteFile("src/main/resources/static" + product.get().getImage());
         productRepository.deleteById(id);
+
         return new ResponseEntity<>("Product successfully deleted", HttpStatus.OK);
     }
 

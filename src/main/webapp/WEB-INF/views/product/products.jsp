@@ -8,6 +8,7 @@
     <head>
         <title>Customers</title>
         <link rel="stylesheet" href="/css/style.css" />
+         <script defer type="module" src="/js/product/products.js"></script>
     </head>
     <body>
           <div id="wrapper">

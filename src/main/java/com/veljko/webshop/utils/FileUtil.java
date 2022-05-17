@@ -2,15 +2,11 @@ package com.veljko.webshop.utils;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
+import java.nio.file.*;
 
-public class FileUploadUtil {
+public class FileUtil {
 
     public static void saveFile(String uploadDir, String fileName,
                                 MultipartFile multipartFile) throws IOException {
@@ -23,11 +19,20 @@ public class FileUploadUtil {
         try (InputStream inputStream = multipartFile.getInputStream()) {
             Path filePath = uploadPath.resolve(fileName);
             Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
-
-            File file = new File(String.valueOf(filePath));
-            System.out.println(file.exists());
         } catch (IOException ioe) {
             throw new IOException("Could not save image file: " + fileName, ioe);
+        }
+    }
+
+    public static void deleteFile(String path) {
+        try {
+            Files.delete(Path.of(path));
+        } catch (NoSuchFileException x) {
+            System.err.format("%s: no such" + " file or directory%n", path);
+        } catch (DirectoryNotEmptyException x) {
+            System.err.format("%s not empty%n", path);
+        } catch (IOException x) {
+            System.err.println(x);
         }
     }
 }

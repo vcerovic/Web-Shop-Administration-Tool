@@ -1,6 +1,8 @@
 package com.veljko.webshop.product;
 
+import com.veljko.webshop.product.exception.ProductNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -53,7 +55,12 @@ public class ProductController {
 
     //DELETE PRODUCT (/products/{id})
     @DeleteMapping("/{id}")
-    public void deleteProduct(@PathVariable(value = "id") Integer id) {
+    public ResponseEntity<String> deleteProduct(@PathVariable(value = "id") Integer id) {
+        try {
+            return productService.deleteProductById(id);
+        } catch (ProductNotFoundException exc) {
+            return new ResponseEntity<>(exc.getMessage(), HttpStatus.NOT_FOUND);
+        }
 
     }
 

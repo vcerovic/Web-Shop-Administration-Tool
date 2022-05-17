@@ -101,7 +101,7 @@ public class Product {
     }
 
     public String getImage() {
-        return "/images/" + image;
+        return image;
     }
 
     public void setImage(String image) {

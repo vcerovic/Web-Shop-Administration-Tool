@@ -32,7 +32,7 @@ public class ProductService {
     //SAVE PRODUCT
     public ResponseEntity<String> saveProduct(Product product, MultipartFile image) {
         String fileName = StringUtils.cleanPath(Objects.requireNonNull(image.getOriginalFilename()));
-        String uploadDir = "src/main/resources/static/images/";
+        String uploadDir = "images/";
 
         try {
             FileUtil.saveFile(uploadDir, fileName, image);
@@ -51,7 +51,7 @@ public class ProductService {
             throw new ProductNotFoundException("Did not find product id - " + id);
         }
 
-        FileUtil.deleteFile("src/main/resources/static" + product.get().getImage());
+        FileUtil.deleteFile("images/" + product.get().getImage());
         productRepository.deleteById(id);
 
         return new ResponseEntity<>("Product successfully deleted", HttpStatus.OK);

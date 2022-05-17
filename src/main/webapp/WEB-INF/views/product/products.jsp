@@ -34,7 +34,7 @@
                               <tr>
                                 <td>${product.id}</td>
                                 <td class="image-td">
-                                   <img src="${product.image}" alt="${product.name}">
+                                   <img src="/images/${product.image}" alt="${product.name}">
                                 </td>
                                 <td>${product.name}</td>
                                 <td>${product.description}</td>

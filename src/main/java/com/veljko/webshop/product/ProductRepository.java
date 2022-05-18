@@ -9,11 +9,12 @@ import java.util.Optional;
 public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     List<Product> findAllByOrderByNameAsc();
-    
+
     Optional<Product> findTopByOrderByTimesSoldDesc();
 
     Optional<Product> findTopByOrderByPriceDesc();
 
     Optional<Product> findTopByOrderByStockDesc();
 
+    Optional<Product> findByName(String name);
 }

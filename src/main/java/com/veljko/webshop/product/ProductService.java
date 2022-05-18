@@ -1,5 +1,6 @@
 package com.veljko.webshop.product;
 
+import com.veljko.webshop.product.exception.ProductNameAlreadyExistsException;
 import com.veljko.webshop.product.exception.ProductNotFoundException;
 import com.veljko.webshop.utils.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,11 @@ public class ProductService {
 
     //SAVE PRODUCT
     public ResponseEntity<String> saveProduct(Product product, MultipartFile image) {
-        String fileName = StringUtils.cleanPath(Objects.requireNonNull(image.getOriginalFilename()));
+        if (productRepository.findByName(product.getName()).isPresent()) {
+            throw new ProductNameAlreadyExistsException("Product with that name already exists!");
+        }
+
+        String fileName = product.getName() + "_" + StringUtils.cleanPath(Objects.requireNonNull(image.getOriginalFilename()));
         String uploadDir = "images/";
 
         try {
@@ -40,7 +45,9 @@ public class ProductService {
             e.printStackTrace();
         }
 
+        product.setImage(fileName);
         productRepository.save(product);
+
         return new ResponseEntity<>("Product is created successfully", HttpStatus.CREATED);
     }
 

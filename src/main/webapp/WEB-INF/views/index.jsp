@@ -1,1 +1,1 @@
-<% response.sendRedirect("customers"); %>
+<% response.sendRedirect("products"); %>

@@ -1,5 +1,6 @@
 package com.veljko.webshop.product;
 
+import com.veljko.webshop.product.exception.ProductNameAlreadyExistsException;
 import com.veljko.webshop.product.exception.ProductNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -50,7 +51,12 @@ public class ProductController {
     //SAVE PRODUCT (/products)
     @PostMapping
     public ResponseEntity<String> saveProduct(@Valid @ModelAttribute("product") Product product, @RequestParam("image_file") MultipartFile multipartFile) {
-        return productService.saveProduct(product, multipartFile);
+        try {
+            return productService.saveProduct(product, multipartFile);
+        } catch (ProductNameAlreadyExistsException exception) {
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.CONFLICT);
+        }
+
     }
 
     //DELETE PRODUCT (/products/{id})

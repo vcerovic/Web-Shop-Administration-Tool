@@ -1,7 +1,5 @@
-package com.veljko.webshop;
+package com.veljko.webshop.customer;
 
-import com.veljko.webshop.customer.Customer;
-import com.veljko.webshop.customer.CustomerRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

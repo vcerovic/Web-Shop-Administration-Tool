@@ -18,15 +18,16 @@ public class Customer {
     private Integer id;
 
     @NotBlank
-    @Size(min = 4, max = 20, message = "Name must be between 4 and 45 characters")
+    @Size(min = 4, max = 15, message = "Name must be between 4 and 15 characters")
     private String name;
 
     @NotBlank
     @Email
+    @Size(min = 4, max = 60, message = "Email must be between 4 and 60 characters")
     private String email;
 
     @NotBlank
-    @Size(min = 4, max = 65, message = "Address must be between 4 and 45 characters")
+    @Size(min = 4, max = 30, message = "Address must be between 4 and 30 characters")
     private String address;
 
     private int purchases;

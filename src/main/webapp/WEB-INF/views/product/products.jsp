@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Customers</title>
+        <title>Products</title>
         <link rel="stylesheet" href="/css/style.css" />
          <script defer type="module" src="/js/product/products.js"></script>
     </head>
@@ -36,8 +36,8 @@
                                 <td class="image-td">
                                    <img src="/images/${product.image}" alt="${product.name}">
                                 </td>
-                                <td>${product.name}</td>
-                                <td>${product.description}</td>
+                                <td title="${product.name}" class="ellipsis">${product.name}</td>
+                                <td title="${product.description}" class="ellipsis">${product.description}</td>
                                 <td>${product.stock}</td>
                                 <td>${product.price}$</td>
                                 <td>${product.timesSold}</td>

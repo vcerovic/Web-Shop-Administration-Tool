@@ -36,7 +36,9 @@ public class ProductService {
             throw new ProductNameAlreadyExistsException("Product with that name already exists!");
         }
 
-        String fileName = product.getName() + "_" + StringUtils.cleanPath(Objects.requireNonNull(image.getOriginalFilename()));
+        String fileName = product.getName().replaceAll(" ", "_").toLowerCase()
+                + "_" + StringUtils.cleanPath(Objects.requireNonNull(image.getOriginalFilename()));
+
         String uploadDir = "images/";
 
         try {
@@ -104,7 +106,7 @@ public class ProductService {
             newProduct.setImage(newProductFileName);
 
         }
-        
+
         productRepository.save(newProduct);
         return new ResponseEntity<>("Product successfully changed", HttpStatus.OK);
     }

@@ -142,7 +142,6 @@ body {
       border-bottom: 1px solid #dddddd;
       background-color: $row-color;
 
-
       td {
         font-weight: 500;
         border-right: 1px solid #bfbfbf;
@@ -262,20 +261,19 @@ body {
     padding: 20px 30px 30px 30px;
   }
 
-
-
   .field {
     height: 50px;
     width: 100%;
     margin-top: 30px;
     position: relative;
 
-    &:first-child{
+    &:first-child {
       margin-top: 0;
       margin-top: 20px;
     }
 
-    input, textarea {
+    input,
+    textarea {
       height: 100%;
       width: 100%;
       outline: none;
@@ -297,32 +295,31 @@ body {
         background: #fff;
         transform: translateY(-50%);
       }
-    
     }
 
     &.success {
-      input, textarea{
+      input,
+      textarea {
         border-color: #24ae36;
       }
 
-      &:not(:placeholder-shown)  label {
+      &:not(:placeholder-shown) label {
         color: #24ae36;
       }
     }
 
     &.error {
-      input, textarea{
+      input,
+      textarea {
         border-color: #d61717;
-      
       }
 
-      &:not(:placeholder-shown)  label {
+      &:not(:placeholder-shown) label {
         color: #d61717 !important;
       }
     }
-    
 
-    .error{
+    .error {
       transition: 200ms;
       padding-top: 5px;
       color: #d61717;
@@ -341,20 +338,20 @@ body {
     }
   }
 
-  .textarea-field{
-      height: 130px !important;
+  .textarea-field {
+    height: 130px !important;
 
-      textarea{
-        font-family: "Montserrat", sans-serif !important;
-        resize: none;
-        padding: 20px;
-      }
+    textarea {
+      font-family: "Montserrat", sans-serif !important;
+      resize: none;
+      padding: 20px;
+    }
   }
 
-  .image-field{
+  .image-field {
     height: 60px !important;
 
-    input{
+    input {
       padding: 17px 22px !important;
     }
   }
@@ -405,10 +402,19 @@ footer {
 
 //Classes
 .swal-overlay {
-  background-color: rgba(58, 58, 58, 0.45)
+  background-color: rgba(58, 58, 58, 0.45);
 }
 
+.ellipsis {
+  max-width: 200px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 
+  &[title]:hover {
+    color: $active;
+  }
+}
 
 .action-btn {
   color: #fff;
@@ -426,10 +432,9 @@ footer {
   &:hover {
     background: $primary;
   }
-
 }
 
-.errorPage{
+.errorPage {
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -448,11 +453,10 @@ footer {
     font-weight: bold;
     margin-top: 20px;
 
-    &:hover{
-    
+    &:hover {
       background-color: $primary;
-      
-      a{
+
+      a {
         color: white;
       }
     }
@@ -474,9 +478,8 @@ footer {
   width: 100%;
   height: 100%;
   transition: 200ms;
-   
-  
-  #loader{
+
+  #loader {
     display: block;
     position: relative;
     left: 50%;
@@ -486,9 +489,9 @@ footer {
     margin: -75px 0 0 -75px;
     border-radius: 50%;
     border: 3px solid transparent;
-    border-top-color: rgba($color: $active, $alpha: 1.0);
+    border-top-color: rgba($color: $active, $alpha: 1);
     animation: spin 2s linear infinite;
-  
+
     &:before {
       content: "";
       position: absolute;
@@ -498,10 +501,10 @@ footer {
       bottom: 5px;
       border-radius: 50%;
       border: 3px solid transparent;
-      border-top-color: rgba($color: #586fe6, $alpha: 1.0);
+      border-top-color: rgba($color: #586fe6, $alpha: 1);
       animation: spin 3s linear infinite;
     }
-    
+
     &:after {
       content: "";
       position: absolute;
@@ -517,7 +520,7 @@ footer {
   }
 }
 
-.hidden{
+.hidden {
   opacity: 0;
 }
 

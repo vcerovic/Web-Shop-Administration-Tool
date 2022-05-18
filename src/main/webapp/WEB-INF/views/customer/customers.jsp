@@ -21,7 +21,7 @@
                               <th>Customer ID</th>
                               <th>Name</th>
                               <th>Email</th>
-                              <th>Address</th>
+                              <th class="ellipsis">Address</th>
                               <th>Purchases</th>
                               <th>Spent</th>
                               <th>Actions</th>
@@ -32,9 +32,9 @@
 
                               <tr>
                                 <td>${customer.id}</td>
-                                <td>${customer.name}</td>
-                                <td>${customer.email}</td>
-                                <td>${customer.address}</td>
+                                <td class="ellipsis" title="${customer.name}">${customer.name}</td>
+                                <td class="ellipsis" title="${customer.email}">${customer.email}</td>
+                                <td class="ellipsis" title="${customer.address}">${customer.address}</td>
                                 <td>${customer.purchases}</td>
                                 <td>${customer.spent}</td>
                                 <td>

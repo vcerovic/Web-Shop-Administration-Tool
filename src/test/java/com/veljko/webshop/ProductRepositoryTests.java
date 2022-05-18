@@ -26,15 +26,15 @@ public class ProductRepositoryTests {
     void setUp() {
         Product product = new Product(
                 "Yugo",
-                "Test",
+                "Test, test, test, test, test",
                 5,
                 28000,
                 "slika1.jpg",
                 20);
 
         Product product2 = new Product(
-                "BMW",
-                "Test",
+                "BMW - car",
+                "Test, test, test, test, test",
                 15,
                 80000,
                 "slika2.jpg",
@@ -42,7 +42,7 @@ public class ProductRepositoryTests {
 
         Product product3 = new Product(
                 "Audi",
-                "Test",
+                "Test, test, test, test, test",
                 20,
                 78000,
                 "slika3.jpg",
@@ -64,7 +64,6 @@ public class ProductRepositoryTests {
         Product mostExpensiveProduct = productRepository.findTopByOrderByPriceDesc().get();
 
         Assertions.assertThat(mostExpensiveProduct).isNotNull();
-        Assertions.assertThat(mostExpensiveProduct.getName()).isEqualTo("BMW");
         Assertions.assertThat(mostExpensiveProduct.getPrice()).isEqualTo(80000);
     }
 
@@ -74,7 +73,6 @@ public class ProductRepositoryTests {
         Product mostSoldProduct = productRepository.findTopByOrderByTimesSoldDesc().get();
 
         Assertions.assertThat(mostSoldProduct).isNotNull();
-        Assertions.assertThat(mostSoldProduct.getName()).isEqualTo("Yugo");
         Assertions.assertThat(mostSoldProduct.getTimesSold()).isEqualTo(20);
     }
 
@@ -83,7 +81,6 @@ public class ProductRepositoryTests {
         Product mostSoldProduct = productRepository.findTopByOrderByStockDesc().get();
 
         Assertions.assertThat(mostSoldProduct).isNotNull();
-        Assertions.assertThat(mostSoldProduct.getName()).isEqualTo("Audi");
         Assertions.assertThat(mostSoldProduct.getStock()).isEqualTo(20);
     }
 }

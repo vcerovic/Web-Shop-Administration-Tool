@@ -289,7 +289,8 @@ body {
   margin-top: 20px;
 }
 
-.form-container .field input, .form-container .field textarea {
+.form-container .field input,
+.form-container .field textarea {
   height: 100%;
   width: 100%;
   outline: none;
@@ -301,12 +302,14 @@ body {
   transition: 200ms;
 }
 
-.form-container .field input:focus, .form-container .field textarea:focus {
+.form-container .field input:focus,
+.form-container .field textarea:focus {
   border-color: #792ff8;
 }
 
 .form-container .field input:focus ~ label,
-.form-container .field input:not(:placeholder-shown) ~ label, .form-container .field textarea:focus ~ label,
+.form-container .field input:not(:placeholder-shown) ~ label,
+.form-container .field textarea:focus ~ label,
 .form-container .field textarea:not(:placeholder-shown) ~ label {
   top: 0%;
   font-size: 16px;
@@ -316,7 +319,8 @@ body {
           transform: translateY(-50%);
 }
 
-.form-container .field.success input, .form-container .field.success textarea {
+.form-container .field.success input,
+.form-container .field.success textarea {
   border-color: #24ae36;
 }
 
@@ -324,7 +328,8 @@ body {
   color: #24ae36;
 }
 
-.form-container .field.error input, .form-container .field.error textarea {
+.form-container .field.error input,
+.form-container .field.error textarea {
   border-color: #d61717;
 }
 
@@ -430,6 +435,17 @@ footer p {
 
 .swal-overlay {
   background-color: rgba(58, 58, 58, 0.45);
+}
+
+.ellipsis {
+  max-width: 200px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.ellipsis[title]:hover {
+  color: #792ff8;
 }
 
 .action-btn {

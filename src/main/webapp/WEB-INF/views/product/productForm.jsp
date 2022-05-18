@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Add new customer</title>
+        <title>Add new product</title>
         <link rel="stylesheet" href="/css/style.css" />
         <script defer type="module" src="/js/product/productForm.js"></script>
     </head>

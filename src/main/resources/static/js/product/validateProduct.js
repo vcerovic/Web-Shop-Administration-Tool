@@ -19,8 +19,8 @@ export function validateFields(isEditForm) {
     if (nameVal === '') {
         setError(name, 'Name is required.');
         isValid = false;
-    } else if (nameVal.length > 15 || nameVal.length < 4) {
-        setError(name, 'Name must be between 4 and 15 characters');
+    } else if (nameVal.length > 25 || nameVal.length < 4) {
+        setError(name, 'Name must be between 4 and 25 characters');
         isValid = false;
     } else {
         setSuccess(name);

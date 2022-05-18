@@ -19,7 +19,7 @@ public class Product {
     private Integer id;
 
     @NotBlank
-    @Size(min = 4, max = 15, message = "Name must be between 4 and 15 characters")
+    @Size(min = 4, max = 25, message = "Name must be between 4 and 25 characters")
     private String name;
 
     @NotBlank

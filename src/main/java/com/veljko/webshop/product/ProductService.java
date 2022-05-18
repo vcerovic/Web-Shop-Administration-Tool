@@ -54,9 +54,11 @@ public class ProductService {
     //DELETE PRODUCT
     public ResponseEntity<String> deleteProductById(Integer id) {
         Optional<Product> product = productRepository.findById(id);
+
         if (product.isEmpty()) {
             throw new ProductNotFoundException("Did not find product id - " + id);
         }
+
 
         FileUtil.deleteFile("images/" + product.get().getImage());
         productRepository.deleteById(id);
@@ -73,14 +75,36 @@ public class ProductService {
     }
 
 
-    //UPDATE CUSTOMER
-    public ResponseEntity<String> updateProduct(Integer id, Product newProduct) {
+    //UPDATE PRODUCT
+    public ResponseEntity<String> updateProduct(Integer id, Product newProduct, MultipartFile image) {
         Product oldProduct = findProductById(id);
 
-        if (!newProduct.getId().equals(oldProduct.getId())) {
+        if (!newProduct.getId().equals(id)) {
             throw new ProductNotFoundException("Product's id doesn't match.");
         }
 
+        if (!oldProduct.getName().equals(newProduct.getName())) {
+            if (productRepository.findByName(newProduct.getName()).isPresent()) {
+                throw new ProductNameAlreadyExistsException("Product with " + newProduct.getName() + " already exists.");
+            }
+        }
+
+        if (!oldProduct.getImage().equals(newProduct.getImage())) {
+            String newProductFileName = newProduct.getName() + "_" + StringUtils.cleanPath(Objects.requireNonNull(image.getOriginalFilename()));
+            String uploadDir = "images/";
+
+            FileUtil.deleteFile("images/" + oldProduct.getImage());
+
+            try {
+                FileUtil.saveFile(uploadDir, newProductFileName, image);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            newProduct.setImage(newProductFileName);
+
+        }
+        
         productRepository.save(newProduct);
         return new ResponseEntity<>("Product successfully changed", HttpStatus.OK);
     }

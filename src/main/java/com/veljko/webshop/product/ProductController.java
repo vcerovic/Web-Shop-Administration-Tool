@@ -45,14 +45,17 @@ public class ProductController {
     //SHOW NEW PRODUCT FORM (/products/new)
     @GetMapping("/new")
     public String showAddProductForm(Model model) {
+        model.addAttribute("form_type", "new");
+
         return "product/productForm";
     }
 
     //SAVE PRODUCT (/products)
     @PostMapping
-    public ResponseEntity<String> saveProduct(@Valid @ModelAttribute("product") Product product, @RequestParam("image_file") MultipartFile multipartFile) {
+    public ResponseEntity<String> saveProduct(@Valid @ModelAttribute("product") Product product,
+                                              @RequestParam("image_file") MultipartFile image) {
         try {
-            return productService.saveProduct(product, multipartFile);
+            return productService.saveProduct(product, image);
         } catch (ProductNameAlreadyExistsException exception) {
             return new ResponseEntity<>(exception.getMessage(), HttpStatus.CONFLICT);
         }
@@ -73,14 +76,26 @@ public class ProductController {
 
     //SHOW EDIT FORM (/products/{id}/edit)
     @GetMapping("/{id}/edit")
-    public void showEditProductForm(@PathVariable(value = "id") Integer id, Model model) {
+    public String showEditProductForm(@PathVariable(value = "id") Integer id, Model model) {
+        Product product = productService.findProductById(id);
 
+        model.addAttribute("form_type", "edit");
+        model.addAttribute("product", product);
+
+        return "product/productForm";
     }
 
 
     //UPDATE PRODUCT (/product)
     @PutMapping("/{id}")
-    public void updateProduct(@PathVariable(value = "id") Integer id, @Valid @ModelAttribute("product") Product product) {
+    public ResponseEntity<String> updateProduct(@PathVariable(value = "id") Integer id,
+                                                @Valid @ModelAttribute("product") Product product,
+                                                @RequestParam("image_file") MultipartFile image) {
 
+        try {
+            return productService.updateProduct(id, product, image);
+        } catch (ProductNotFoundException | ProductNameAlreadyExistsException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+        }
     }
 }

@@ -71,7 +71,7 @@ public class CustomerController {
     @GetMapping("/{id}/edit")
     public String showEditCustomerForm(@PathVariable(value = "id") Integer id, Model model) {
         Customer customer = customerService.findCustomerById(id);
-
+        
         model.addAttribute("form_type", "edit");
         model.addAttribute("customer", customer);
 

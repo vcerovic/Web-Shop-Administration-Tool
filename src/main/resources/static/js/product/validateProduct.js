@@ -7,7 +7,7 @@ const description = document.getElementById('description');
 const image = document.getElementById('image');
 const imageFile = document.getElementById('image_file');
 
-export function validateFields() {
+export function validateFields(isEditForm) {
     let isValid = true;
 
     const nameVal = name.value.trim();
@@ -57,15 +57,20 @@ export function validateFields() {
         setSuccess(description);
     }
 
-    if (imageFileVal.length === 0) {
-        setError(imageFile, 'Image is required.');
-        isValid = false;
-    } else {
-        setSuccess(imageFile);
+    if (!isEditForm) {
+        if (imageFileVal.length === 0) {
+            setError(imageFile, 'Image is required.');
+            isValid = false;
+        } else {
+            setSuccess(imageFile);
+            image.value = imageFileVal[0].name;
+        }
     }
 
+    if (isEditForm && imageFileVal.length !== 0) {
+        image.value = imageFileVal[0].name;
+    }
 
-    image.value = imageFileVal[0].name;
 
     return isValid;
 

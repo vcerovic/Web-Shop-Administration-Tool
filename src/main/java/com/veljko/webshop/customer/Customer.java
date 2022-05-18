@@ -6,7 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "customers")
@@ -34,7 +34,7 @@ public class Customer {
     private int spent;
 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "customers")
-    private Set<Product> products;
+    private List<Product> products;
 
     public Customer() {
     }
@@ -95,11 +95,11 @@ public class Customer {
         this.spent = spent;
     }
 
-    public Set<Product> getProducts() {
+    public List<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(Set<Product> products) {
+    public void setProducts(List<Product> products) {
         this.products = products;
     }
 

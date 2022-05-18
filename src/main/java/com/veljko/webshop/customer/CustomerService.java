@@ -53,7 +53,7 @@ public class CustomerService {
     public Customer findCustomerById(Integer id) {
         return customerRepository
                 .findById(id)
-                .orElseThrow(() -> new RuntimeException("Did not find customer id - " + id));
+                .orElseThrow(() -> new CustomerNotFoundException("Did not find customer id - " + id));
     }
 
     //UPDATE CUSTOMER

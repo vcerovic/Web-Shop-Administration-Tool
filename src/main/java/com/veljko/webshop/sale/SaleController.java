@@ -1,6 +1,9 @@
 package com.veljko.webshop.sale;
 
+import com.veljko.webshop.customer.exception.CustomerNotFoundException;
+import com.veljko.webshop.product.exception.ProductNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,6 +47,11 @@ public class SaleController {
     @PostMapping
     public ResponseEntity<String> saveSale(@RequestParam("customer_id") Integer customerId,
                                            @RequestParam("product_id") Integer productId) {
-        return saleService.saveSale(customerId, productId);
+        try {
+            return saleService.saveSale(customerId, productId);
+        } catch (CustomerNotFoundException | ProductNotFoundException exception) {
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
+        }
+
     }
 }

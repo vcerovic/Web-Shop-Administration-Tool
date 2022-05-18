@@ -36,7 +36,7 @@
                                 <td class="ellipsis" title="${customer.email}">${customer.email}</td>
                                 <td class="ellipsis" title="${customer.address}">${customer.address}</td>
                                 <td>${customer.purchases}</td>
-                                <td>${customer.spent}</td>
+                                <td>${customer.spent}$</td>
                                 <td>
                                   <a href="/customers/${customer.id}/edit" class="edit-btn"
                                     ><i class="fa-solid fa-pen-to-square"></i

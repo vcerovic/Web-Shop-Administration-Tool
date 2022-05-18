@@ -15,6 +15,7 @@ export async function postCreateRequest(form, url) {
         showSuccessMessageAndRedirect(response.data, url);
 
     } catch (error) {
+        console.log(error);
         showErrorMessage(error.response.data);
     }
 }

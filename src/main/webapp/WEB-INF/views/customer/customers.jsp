@@ -56,6 +56,7 @@
                             <div class="stats-info">
                               <p class="stats-title">Most spent:</p>
                               <h1>${customer_spent.spent}</h1>
+                              <p>${customer_spent.name}</p>
                             </div>
                           </div>
 
@@ -64,6 +65,7 @@
                             <div class="stats-info">
                               <p class="stats-title">Most purchases:</p>
                                <h1>${customer_purchase.purchases}</h1>
+                               <p>${customer_purchase.name}</p>
                             </div>
                           </div>
                               <div class="stats-card">

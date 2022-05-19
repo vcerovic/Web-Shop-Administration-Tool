@@ -30,7 +30,6 @@
                           </thead>
                           <tbody>
                             <c:forEach var="product" items="${products}">
-
                               <tr>
                                 <td>${product.id}</td>
                                 <td class="image-td">

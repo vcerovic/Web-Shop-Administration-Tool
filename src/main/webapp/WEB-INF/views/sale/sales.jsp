@@ -17,20 +17,30 @@
                         <table class="content-table">
                           <thead>
                             <tr>
-                              <th>Sale ID</th>
                               <th>Customer ID</th>
+                              <th>Customer Name</th>
+                              <th>Email</th>
                               <th>Product ID</th>
-                              <th>Time</th>
+                              <th>Product Name</th>
+                              <th>Image</th>
+                              <th>Price</th>
                             </tr>
                           </thead>
                           <tbody>
-                            <c:forEach var="sale" items="${sales}">
-                              <tr>
-                                <td>${sale.id}</td>
-                                <td>${sale.customerId}</td>
-                                <td>${sale.productId}</td>
-                                <td>${sale.time}</td>
-                              </tr>
+                            <c:forEach var="customer" items="${customers}">
+                                <c:forEach var="product" items="${customer.products}">
+                                  <tr>
+                                    <td>${customer.id}</td>
+                                    <td>${customer.name}</td>
+                                    <td>${customer.email}</td>
+                                    <td>${product.id}</td>
+                                    <td>${product.name}</td>
+                                    <td class="image-td">
+                                       <img src="/images/${product.image}" alt="${product.name}">
+                                    </td>
+                                    <td>${product.price}$</td>
+                                  </tr>
+                            </c:forEach>
                             </c:forEach>
                           </tbody>
                         </table>

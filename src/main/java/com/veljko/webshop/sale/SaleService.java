@@ -12,27 +12,18 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 @Service
 public class SaleService {
-    private final SaleRepository saleRepository;
     private final ProductRepository productRepository;
     private final CustomerRepository customerRepository;
 
     @Autowired
-    public SaleService(SaleRepository saleRepository,
-                       ProductRepository productRepository,
-                       CustomerRepository customerRepository) {
+    public SaleService(ProductRepository productRepository, CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
-        this.saleRepository = saleRepository;
         this.productRepository = productRepository;
     }
 
-    //LIST ALL SALES
-    public List<Sale> getAllSales() {
-        return saleRepository.findAll();
-    }
 
     //SAVE SALE (/sales)
     public ResponseEntity<String> saveSale(Integer customerId, Integer productId, int quantity) {
@@ -60,6 +51,7 @@ public class SaleService {
 
         product.setTimesSold(product.getTimesSold() + quantity);
         product.setStock(product.getStock() - quantity);
+
 
         product.getCustomers().add(customer);
         customer.getProducts().add(product);

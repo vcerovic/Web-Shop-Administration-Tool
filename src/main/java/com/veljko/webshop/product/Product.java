@@ -116,6 +116,7 @@ public class Product {
         this.timesSold = timesSold;
     }
 
+
     public List<Customer> getCustomers() {
         return customers;
     }

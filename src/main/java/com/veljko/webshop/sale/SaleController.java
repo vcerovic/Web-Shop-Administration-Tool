@@ -1,5 +1,7 @@
 package com.veljko.webshop.sale;
 
+import com.veljko.webshop.customer.Customer;
+import com.veljko.webshop.customer.CustomerRepository;
 import com.veljko.webshop.customer.exception.CustomerNotFoundException;
 import com.veljko.webshop.product.exception.ProductNotFoundException;
 import com.veljko.webshop.product.exception.ProductOutOfStockException;
@@ -20,18 +22,22 @@ import java.util.List;
 public class SaleController {
 
     private final SaleService saleService;
+    private final CustomerRepository customerRepository;
+
 
     @Autowired
-    public SaleController(SaleService saleService) {
+    public SaleController(SaleService saleService, CustomerRepository customerRepository) {
         this.saleService = saleService;
+        this.customerRepository = customerRepository;
+
     }
 
     //SHOW ALL SALES
     @GetMapping
     public String listAllSales(Model model) {
-        List<Sale> sales = saleService.getAllSales();
+        List<Customer> customers = customerRepository.findAll();
 
-        model.addAttribute("sales", sales);
+        model.addAttribute("customers", customers);
 
         return "sale/sales";
     }

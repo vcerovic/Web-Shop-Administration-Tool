@@ -20,14 +20,19 @@
                     <div class="form-container">
                       <div class="title">Add new sale</div>
                           <form action="/sales" method="POST" id="new_sale_form">
+                             <div class="field">
+                               <input type="number" name="customer_id" id="customer_id" placeholder=" ">
+                               <label for="customer_id">Customer ID:</label>
+                               <div class="error"></div>
+                             </div>
                             <div class="field">
                                <input type="number" name="product_id" id="product_id" placeholder=" ">
                                <label for="product_id">Product ID:</label>
                                <div class="error"></div>
                              </div>
-                             <div class="field">
-                               <input type="number" name="customer_id" id="customer_id" placeholder=" ">
-                               <label for="customer_id">Customer ID:</label>
+                              <div class="field">
+                               <input type="number" name="quantity" id="quantity" placeholder=" ">
+                               <label for="quantity">Quantity:</label>
                                <div class="error"></div>
                              </div>
 

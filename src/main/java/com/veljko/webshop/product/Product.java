@@ -27,7 +27,7 @@ public class Product {
     private String description;
 
     @NotNull
-    @Min(value = 1, message = "At least one product is required")
+    @Min(value = 0)
     private int stock;
 
     @NotNull

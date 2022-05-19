@@ -11,7 +11,7 @@
     </head>
     <body>
           <div id="wrapper">
-                <c:set var="menu" value="products" scope="request"/>
+                <c:set var="menu" value="sales" scope="request"/>
                  <%@ include file="../components/menu.jsp" %>
                       <div class="content-container">
                         <table class="content-table">

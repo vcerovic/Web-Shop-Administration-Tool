@@ -161,6 +161,12 @@ body {
   border: none;
 }
 
+.content-table tbody tr .out_of_stock {
+  background-color: #ffdfdf !important;
+  color: black;
+  font-weight: 600;
+}
+
 .content-table tbody tr .image-td {
   padding: 6px 0 !important;
 }

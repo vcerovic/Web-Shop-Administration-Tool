@@ -38,7 +38,7 @@
                                 </td>
                                 <td title="${product.name}" class="ellipsis">${product.name}</td>
                                 <td title="${product.description}" class="ellipsis">${product.description}</td>
-                                <td>${product.stock}</td>
+                                <td class=${(product.stock < 1 ? "out_of_stock" : "")}>${product.stock}</td>
                                 <td>${product.price}$</td>
                                 <td>${product.timesSold}</td>
                                 <td>
@@ -56,7 +56,7 @@
 
                         <aside id="stats">
                           <div class="stats-card">
-                            <i class="fa-solid fa-hand-holding-dollar"></i>
+                            <i class="fa-solid fa-medal"></i>
                             <div class="stats-info">
                               <p class="stats-title">Most sold:</p>
                               <h1>${most_sold_product.timesSold}</h1>
@@ -65,7 +65,7 @@
                           </div>
 
                           <div class="stats-card">
-                            <i class="fa-solid fa-piggy-bank"></i>
+                            <i class="fa-solid fa-money-bill-trend-up"></i>
                             <div class="stats-info">
                               <p class="stats-title">Most expensive:</p>
                                <h1>${most_expensive_product.price}$</h1>
@@ -73,7 +73,7 @@
                             </div>
                           </div>
                               <div class="stats-card">
-                                  <i class="fa-solid fa-users"></i>
+                                  <i class="fa-solid fa-box-open"></i>
                                   <div class="stats-info">
                                   <p class="stats-title">Most in stock:</p>
                                     <h1>${most_stock_product.stock}</h1>
@@ -81,7 +81,7 @@
                                </div>
                            </div>
                                 <div class="stats-card">
-                                  <i class="fa-solid fa-piggy-bank"></i>
+                                  <i class="fa-solid fa-truck"></i>
                                   <div class="stats-info">
                                     <p class="stats-title">Total products:</p>
                                      <h1>${total_products}</h1>

@@ -1,6 +1,6 @@
 package com.veljko.webshop.product;
 
-import com.veljko.webshop.customer.Customer;
+import com.veljko.webshop.sale.Sale;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -40,13 +40,8 @@ public class Product {
     @Column(name = "times_sold")
     private int timesSold;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "sales",
-            joinColumns = {@JoinColumn(name = "product_id")},
-            inverseJoinColumns = {@JoinColumn(name = "customer_id")}
-    )
-    private List<Customer> customers;
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<Sale> sales;
 
     public Product() {
     }
@@ -117,12 +112,12 @@ public class Product {
     }
 
 
-    public List<Customer> getCustomers() {
-        return customers;
+    public List<Sale> getSales() {
+        return sales;
     }
 
-    public void setCustomers(List<Customer> customers) {
-        this.customers = customers;
+    public void setSales(List<Sale> sales) {
+        this.sales = sales;
     }
 
     @Override
@@ -135,7 +130,7 @@ public class Product {
                 ", price=" + price +
                 ", image='" + image + '\'' +
                 ", timesSold=" + timesSold +
-                ", customers=" + customers +
+                ", sales=" + sales +
                 '}';
     }
 }

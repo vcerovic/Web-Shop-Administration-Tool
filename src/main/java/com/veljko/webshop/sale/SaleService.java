@@ -12,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 
 @Service
 public class SaleService {
@@ -53,11 +55,11 @@ public class SaleService {
         product.setStock(product.getStock() - quantity);
 
 
-        product.getCustomers().add(customer);
-        customer.getProducts().add(product);
+        Sale sale = new Sale(customer, product, new Date(), quantity);
 
+        customer.getSales().add(sale);
+        customerRepository.save(customer);
 
-        productRepository.save(product);
         return new ResponseEntity<>("Sale successfully created", HttpStatus.OK);
     }
 

@@ -156,6 +156,14 @@ body {
         }
       }
 
+      .customer_td{
+        background-color: #fffbdf !important;
+      }
+
+      .sale_td{
+        background-color: #dfffe1 !important;
+      }
+      
       .out_of_stock {
         background-color: #ffdfdf !important;
         color: black;
@@ -411,6 +419,10 @@ footer {
 }
 
 //Classes
+.bold{
+  font-weight: 700 !important;
+}
+
 .swal-overlay {
   background-color: rgba(58, 58, 58, 0.45);
 }

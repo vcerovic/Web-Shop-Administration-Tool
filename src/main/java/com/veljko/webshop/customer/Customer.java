@@ -1,6 +1,6 @@
 package com.veljko.webshop.customer;
 
-import com.veljko.webshop.product.Product;
+import com.veljko.webshop.sale.Sale;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -33,8 +33,8 @@ public class Customer {
     private int purchases;
     private int spent;
 
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "customers")
-    private List<Product> products;
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    private List<Sale> sales;
 
     public Customer() {
     }
@@ -95,12 +95,12 @@ public class Customer {
         this.spent = spent;
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public List<Sale> getSales() {
+        return sales;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public void setSales(List<Sale> sales) {
+        this.sales = sales;
     }
 
     @Override
@@ -112,7 +112,7 @@ public class Customer {
                 ", address='" + address + '\'' +
                 ", purchases=" + purchases +
                 ", spent=" + spent +
-                ", products=" + products +
+                ", sales=" + sales +
                 '}';
     }
 }

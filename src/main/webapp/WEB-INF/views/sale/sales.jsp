@@ -18,29 +18,35 @@
                           <thead>
                             <tr>
                               <th>Customer ID</th>
-                              <th>Customer Name</th>
-                              <th>Email</th>
+                              <th>Customer</th>
                               <th>Product ID</th>
-                              <th>Product Name</th>
+                              <th>Product</th>
                               <th>Image</th>
                               <th>Price</th>
+                              <th>Quantity</th>
+                              <th>Time</th>
+                              <th>Profit</th>
                             </tr>
                           </thead>
                           <tbody>
                             <c:forEach var="customer" items="${customers}">
-                                <c:forEach var="product" items="${customer.products}">
+                            <c:if test="${customer.sales}">
+                             <c:forEach var="sale" items="${customer.sales}">
                                   <tr>
-                                    <td>${customer.id}</td>
-                                    <td>${customer.name}</td>
-                                    <td>${customer.email}</td>
-                                    <td>${product.id}</td>
-                                    <td>${product.name}</td>
+                                    <td class="customer_td">${sale.customer.id}</td>
+                                    <td class="customer_td">${sale.customer.name}</td>
+                                    <td>${sale.product.id}</td>
+                                    <td>${sale.product.name}</td>
                                     <td class="image-td">
-                                       <img src="/images/${product.image}" alt="${product.name}">
+                                       <img src="/images/${sale.product.image}" alt="${sale.product.name}">
                                     </td>
-                                    <td>${product.price}$</td>
+                                    <td>${sale.product.price}$</td>
+                                    <td class="sale_td">${sale.quantity}</td>
+                                    <td class="sale_td">${sale.time}</td>
+                                    <td class="sale_td bold">${sale.product.price * sale.quantity}$</td>
                                   </tr>
-                            </c:forEach>
+                               </c:forEach>
+                              </c:if>
                             </c:forEach>
                           </tbody>
                         </table>

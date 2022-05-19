@@ -165,6 +165,14 @@ body {
   border: none;
 }
 
+.content-table tbody tr .customer_td {
+  background-color: #fffbdf !important;
+}
+
+.content-table tbody tr .sale_td {
+  background-color: #dfffe1 !important;
+}
+
 .content-table tbody tr .out_of_stock {
   background-color: #ffdfdf !important;
   color: black;
@@ -441,6 +449,10 @@ footer {
 footer p {
   font-size: 1em;
   font-weight: 400;
+}
+
+.bold {
+  font-weight: 700 !important;
 }
 
 .swal-overlay {

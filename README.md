@@ -9,6 +9,7 @@
   1. [Technologies](#Technologies)
   2. [User guide](#Guide)
   3. [Functionality](#Functionality)
+  4. [Database](#Database)
 
 
 <br>
@@ -45,7 +46,6 @@
 2. Modify the database connection configuration to suit your settings. All settings can be found in the file `src/main/resources/application.properties`. 
 3. Finally, you can start application by running `main()` method inside `src/main/java/com/veljko/webshop/WebshopApplication.java` file.
 
-![Database Diagram](https://i.ibb.co/BNBKbS2/er-diagram.png)
 
 <br>
 <br>
@@ -85,3 +85,10 @@
 
 
 ![Manage Sales](https://i.ibb.co/dQjXhSt/sales.png)
+
+<br>
+<br>
+
+## <a name="Database"></a> Database Diagram
+
+![Database Diagram](https://i.ibb.co/BNBKbS2/er-diagram.png)

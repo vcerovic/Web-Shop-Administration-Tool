@@ -32,7 +32,7 @@ public class FileUtil {
         } catch (DirectoryNotEmptyException x) {
             System.err.format("%s not empty%n", path);
         } catch (IOException x) {
-            System.err.println(x);
+            x.printStackTrace();
         }
     }
 }

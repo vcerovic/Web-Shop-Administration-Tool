@@ -13,7 +13,7 @@ for (let i = 0; i < deleteBtns.length; i++) {
 
         swal({
             title: "Are you sure?",
-            text: "You will not be able to recover this customer",
+            text: "All of this customer's purchases will be deleted.",
             icon: "warning",
             buttons: true,
             cancel: {

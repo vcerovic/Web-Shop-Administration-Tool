@@ -33,25 +33,30 @@ public class ProductService {
 
     //SAVE PRODUCT
     public ResponseEntity<String> saveProduct(Product product, MultipartFile image) {
+        //Checking for unique product name
         if (productRepository.findByName(product.getName()).isPresent()) {
             throw new ProductNameAlreadyExistsException("Product with that name already exists!");
         }
 
+        //Check if uploaded image is smaller than 2mb
         if (image.getSize() > 2e+6) {
             throw new ProductImageSizeLimitException("Only 2mb image size is allowed");
         }
 
+        //Creating file name for passed image based on product name
         String fileName = product.getName().replaceAll(" ", "_").toLowerCase()
                 + "_" + StringUtils.cleanPath(Objects.requireNonNull(image.getOriginalFilename()));
 
         String uploadDir = "images/";
 
+        //Saving image into images/ folder
         try {
             FileUtil.saveFile(uploadDir, fileName, image);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+        //Saving product with newly created image name
         product.setImage(fileName);
         productRepository.save(product);
 
@@ -90,22 +95,28 @@ public class ProductService {
             throw new ProductNotFoundException("Product's id doesn't match.");
         }
 
+        //Check if uploaded image is smaller than 2mb
         if (image.getSize() > 2e+6) {
             throw new ProductImageSizeLimitException("Only 2mb image size is allowed");
         }
 
+        //If new passed name doesn't equal to old one then checks if new name belongs to some product
         if (!oldProduct.getName().equals(newProduct.getName())) {
             if (productRepository.findByName(newProduct.getName()).isPresent()) {
                 throw new ProductNameAlreadyExistsException("Product with " + newProduct.getName() + " already exists.");
             }
         }
 
+
+        //Checks if new passed image doesn't equal to old one
         if (!oldProduct.getImage().equals(newProduct.getImage())) {
+            //Renaming image file
             String newProductFileName = newProduct.getName().replaceAll(" ", "_").toLowerCase()
                     + "_" + StringUtils.cleanPath(Objects.requireNonNull(image.getOriginalFilename()));
 
             String uploadDir = "images/";
 
+            //Deleting old image
             FileUtil.deleteFile(uploadDir + oldProduct.getImage());
 
             try {
@@ -118,6 +129,7 @@ public class ProductService {
 
         }
 
+        //Saving product
         productRepository.save(newProduct);
         return new ResponseEntity<>("Product successfully changed", HttpStatus.OK);
     }

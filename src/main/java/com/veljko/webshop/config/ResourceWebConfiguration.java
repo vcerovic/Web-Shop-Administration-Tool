@@ -8,6 +8,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class ResourceWebConfiguration implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(final ResourceHandlerRegistry registry) {
+        //Changed directory location of uploaded files
         registry.addResourceHandler("/images/**").addResourceLocations("file:images/");
     }
 }

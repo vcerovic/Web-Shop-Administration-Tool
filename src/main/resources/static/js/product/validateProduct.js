@@ -29,9 +29,12 @@ export function validateFields(isEditForm) {
     if (stockVal === '') {
         setError(stock, 'Stock number is required.');
         isValid = false;
-    } else if (stockVal < 1) {
+    } else if (stockVal < 1 && !isEditForm) {
         setError(stock, 'At least one product is required');
         isValid = false;
+    } else if(isEditForm && stockVal < 0){
+         setError(stock, "Stock can't be lower than 0");
+         isValid = false;
     } else {
         setSuccess(stock);
     }

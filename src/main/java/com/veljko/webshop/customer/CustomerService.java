@@ -29,10 +29,12 @@ public class CustomerService {
 
     //SAVE CUSTOMER
     public ResponseEntity<String> saveCustomer(Customer customer) {
+        //Checks if customer with passed email already exist
         if (customerRepository.findByEmail(customer.getEmail()).isPresent()) {
             throw new CustomerEmailAlreadyExistsException("Customer with " + customer.getEmail() + " already exists.");
         }
 
+        //Save customer to database
         customerRepository.save(customer);
         return new ResponseEntity<>("Customer is created successfully", HttpStatus.CREATED);
     }
@@ -40,10 +42,12 @@ public class CustomerService {
 
     //DELETE CUSTOMER
     public ResponseEntity<String> deleteCustomerById(Integer id) {
+        //Checks if customer with passed id exist
         if (customerRepository.findById(id).isEmpty()) {
             throw new CustomerNotFoundException("Did not find customer id - " + id);
         }
 
+        //Delete customer from database
         customerRepository.deleteById(id);
         return new ResponseEntity<>("Customer successfully deleted", HttpStatus.OK);
     }
@@ -60,6 +64,7 @@ public class CustomerService {
     public ResponseEntity<String> updateCustomer(Integer id, Customer newCustomer) {
         Customer oldCustomer = findCustomerById(id);
 
+        //If new passed email doesn't equal to old one then checks if new email belongs to someone
         if (!oldCustomer.getEmail().equals(newCustomer.getEmail())) {
             if (customerRepository.findByEmail(newCustomer.getEmail()).isPresent()) {
                 throw new CustomerEmailAlreadyExistsException("Customer with " + newCustomer.getEmail() + " already exists.");

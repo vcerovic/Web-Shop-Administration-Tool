@@ -50,6 +50,8 @@
                       <div class="title">Edit ${customer.name}</div>
                           <form action="/customers/${customer.id}" method="POST" id="edit_customer_form">
                             <input type="hidden" id="customer_id" name="customer_id" value="${customer.id}">
+                            <input type="hidden" id="purchases" name="purchases" value="${customer.purchases}">
+                            <input type="hidden" id="spent" name="spent" value="${customer.spent}">
                                <div class="field">
                                  <input type="text" name="name" id="name" value="${customer.name}" placeholder=" ">
                                  <label for="name">Name</label>

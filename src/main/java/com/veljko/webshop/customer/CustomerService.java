@@ -23,7 +23,7 @@ public class CustomerService {
 
     //LIST ALL CUSTOMERS
     public List<Customer> findAllCustomers() {
-        return customerRepository.findAllByOrderByNameAsc();
+        return customerRepository.findAllByOrderByIdAsc();
     }
 
 

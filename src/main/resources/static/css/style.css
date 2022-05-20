@@ -166,15 +166,15 @@ body {
 }
 
 .content-table tbody tr .customer_td {
-  background-color: #fffbdf !important;
+  background-color: #fffdeb !important;
 }
 
 .content-table tbody tr .sale_td {
-  background-color: #dfffe1 !important;
+  background-color: #eaffeb !important;
 }
 
 .content-table tbody tr .out_of_stock {
-  background-color: #ffdfdf !important;
+  background-color: #ffe4e4 !important;
   color: black;
   font-weight: 600;
 }

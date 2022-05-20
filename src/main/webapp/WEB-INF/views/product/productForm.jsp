@@ -63,18 +63,19 @@
                       <div class="title">Edit ${product.name}</div>
                           <form action="/products/${product.id}" method="POST" id="edit_product_form">
                            <input type="hidden" id="product_id" name="product_id" value="${product.id}">
+                           <input type="hidden" id="timesSold" name="timesSold" value="${product.timesSold}">
                             <div class="field">
-                               <input type="text" name="name" id="name" value=${product.name} placeholder=" ">
+                               <input type="text" name="name" id="name" value="${product.name}" placeholder=" ">
                                <label for="name">Name</label>
                                <div class="error"></div>
                              </div>
                              <div class="field">
-                               <input type="number" name="stock" id="stock" value=${product.stock} placeholder=" ">
+                               <input type="number" name="stock" id="stock" value="${product.stock}" placeholder=" ">
                                <label for="stock">Stock</label>
                                <div class="error"></div>
                              </div>
                              <div class="field">
-                               <input type="number" name="price" id="price" value=${product.price} placeholder=" ">
+                               <input type="number" name="price" id="price" value="${product.price}" placeholder=" ">
                                <label for="price">Price</label>
                                <div class="error"></div>
                              </div>
@@ -83,7 +84,7 @@
                                   <label for="description">Description:</label>
                                   <div class="error"></div>
                               </div>
-                              <input type="hidden" id="image" name="image" value=${product.image}>
+                              <input type="hidden" id="image" name="image" value="${product.image}">
 
                               <div class="field image-field">
                                   <input type="file" name="image_file" id="image_file" accept="image/png, image/jpeg" class="input_file"/>

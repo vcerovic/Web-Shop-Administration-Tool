@@ -1,5 +1,6 @@
 package com.veljko.webshop.product;
 
+import com.veljko.webshop.product.exception.ProductImageSizeLimitException;
 import com.veljko.webshop.product.exception.ProductNameAlreadyExistsException;
 import com.veljko.webshop.product.exception.ProductNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,7 +57,7 @@ public class ProductController {
                                               @RequestParam("image_file") MultipartFile image) {
         try {
             return productService.saveProduct(product, image);
-        } catch (ProductNameAlreadyExistsException exception) {
+        } catch (ProductNameAlreadyExistsException | ProductImageSizeLimitException exception) {
             return new ResponseEntity<>(exception.getMessage(), HttpStatus.CONFLICT);
         }
 
@@ -94,7 +95,7 @@ public class ProductController {
 
         try {
             return productService.updateProduct(id, product, image);
-        } catch (ProductNotFoundException | ProductNameAlreadyExistsException e) {
+        } catch (ProductNotFoundException | ProductNameAlreadyExistsException | ProductImageSizeLimitException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
         }
     }

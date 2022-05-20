@@ -30,7 +30,6 @@
                           </thead>
                           <tbody>
                             <c:forEach var="customer" items="${customers}">
-                            <c:if test="${customer.sales}">
                              <c:forEach var="sale" items="${customer.sales}">
                                   <tr>
                                     <td class="customer_td">${sale.customer.id}</td>
@@ -46,12 +45,9 @@
                                     <td class="sale_td bold">${sale.product.price * sale.quantity}$</td>
                                   </tr>
                                </c:forEach>
-                              </c:if>
                             </c:forEach>
                           </tbody>
                         </table>
-
-
                       </div>
                     </div>
 

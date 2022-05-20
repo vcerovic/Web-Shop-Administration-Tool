@@ -7,9 +7,8 @@ import java.util.Optional;
 
 
 public interface ProductRepository extends JpaRepository<Product, Integer> {
-    ;
 
-    List<Product> findAllByOrderByNameAsc();
+    List<Product> findAllByOrderByIdAsc();
 
     Optional<Product> findTopByOrderByTimesSoldDesc();
 

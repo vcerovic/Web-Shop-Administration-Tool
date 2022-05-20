@@ -55,7 +55,7 @@
                             <i class="fa-solid fa-hand-holding-dollar"></i>
                             <div class="stats-info">
                               <p class="stats-title">Most spent:</p>
-                              <h1>${customer_spent.spent}</h1>
+                              <h1>${customer_spent.spent}$</h1>
                               <p>${customer_spent.name}</p>
                             </div>
                           </div>

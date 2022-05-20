@@ -1,5 +1,6 @@
 package com.veljko.webshop.product;
 
+import com.veljko.webshop.product.exception.ProductImageSizeLimitException;
 import com.veljko.webshop.product.exception.ProductNameAlreadyExistsException;
 import com.veljko.webshop.product.exception.ProductNotFoundException;
 import com.veljko.webshop.utils.FileUtil;
@@ -27,13 +28,17 @@ public class ProductService {
 
     //LIST ALL PRODUCTS
     public List<Product> getAllProducts() {
-        return productRepository.findAllByOrderByNameAsc();
+        return productRepository.findAllByOrderByIdAsc();
     }
 
     //SAVE PRODUCT
     public ResponseEntity<String> saveProduct(Product product, MultipartFile image) {
         if (productRepository.findByName(product.getName()).isPresent()) {
             throw new ProductNameAlreadyExistsException("Product with that name already exists!");
+        }
+
+        if (image.getSize() > 2e+6) {
+            throw new ProductImageSizeLimitException("Only 2mb image size is allowed");
         }
 
         String fileName = product.getName().replaceAll(" ", "_").toLowerCase()
@@ -85,6 +90,10 @@ public class ProductService {
             throw new ProductNotFoundException("Product's id doesn't match.");
         }
 
+        if (image.getSize() > 2e+6) {
+            throw new ProductImageSizeLimitException("Only 2mb image size is allowed");
+        }
+
         if (!oldProduct.getName().equals(newProduct.getName())) {
             if (productRepository.findByName(newProduct.getName()).isPresent()) {
                 throw new ProductNameAlreadyExistsException("Product with " + newProduct.getName() + " already exists.");
@@ -92,10 +101,12 @@ public class ProductService {
         }
 
         if (!oldProduct.getImage().equals(newProduct.getImage())) {
-            String newProductFileName = newProduct.getName() + "_" + StringUtils.cleanPath(Objects.requireNonNull(image.getOriginalFilename()));
+            String newProductFileName = newProduct.getName().replaceAll(" ", "_").toLowerCase()
+                    + "_" + StringUtils.cleanPath(Objects.requireNonNull(image.getOriginalFilename()));
+
             String uploadDir = "images/";
 
-            FileUtil.deleteFile("images/" + oldProduct.getImage());
+            FileUtil.deleteFile(uploadDir + oldProduct.getImage());
 
             try {
                 FileUtil.saveFile(uploadDir, newProductFileName, image);

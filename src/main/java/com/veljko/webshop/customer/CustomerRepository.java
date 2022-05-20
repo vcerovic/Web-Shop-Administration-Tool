@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 
-    List<Customer> findAllByOrderByNameAsc();
+    List<Customer> findAllByOrderByIdAsc();
 
     Optional<Customer> findTopByOrderBySpentDesc();
 

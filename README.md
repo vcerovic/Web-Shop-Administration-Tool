@@ -30,7 +30,7 @@
        <li>JSP - Java Server Pages</li>
        <li>Javascript</li>
        <li>Axios (for requests)</li>
-       <li>[SweetAlert2 (for alerts)](https://github.com/sweetalert2)</li>
+       <li>SweetAlert2 (for alerts)</li>
        <li>SCSS</li>
     </ul>  
   </li>

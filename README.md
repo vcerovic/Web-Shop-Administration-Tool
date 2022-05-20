@@ -1,16 +1,25 @@
 <h1 align="center">Web Shop Administration Tool</h1>
 
-
 ![Admin Page Products](https://i.ibb.co/zXj3sWQ/products.png)
 
 <br>
 
 ## Content
-  1. [Technologies](#Technologies)
-  2. [User guide](#Guide)
-  3. [Functionality](#Functionality)
-  4. [Database](#Database)
+  1. [Info](#Info)
+  2. [Technologies](#Technologies)
+  3. [User guide](#Guide)
+  4. [Functionality](#Functionality)
+  5. [Database](#Database)
 
+
+<br>
+<br>
+
+## <a name="Info"></a> Project Info
+
+Web Shop Administration Tool where you can view, create, delete, and edit your customers and products.
+You can make sales between them. With each entity comes different statistical data.
+Data is validated both on frontend and backend side.
 
 <br>
 <br>

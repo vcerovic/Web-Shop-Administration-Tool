@@ -66,7 +66,7 @@
 
 <br>
 
-![Manage Products](https://i.ibb.co/r5vR6Rd/add-product.png)
+![Manage Products](https://i.ibb.co/gt6LTL4/add-product.png)
 
 <br>
 
@@ -74,7 +74,7 @@
 
 <br>
 
-![Manage Customers](https://i.ibb.co/K6mx1Yr/add-customer.png)
+![Manage Customers](https://i.ibb.co/R4W6nNq/add-customer.png)
 
 
 <br>

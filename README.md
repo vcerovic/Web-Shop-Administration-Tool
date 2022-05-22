@@ -51,7 +51,7 @@ Data is validated both on frontend and backend side.
 <br>
 
 ## <a name="Guide"></a> User guide
-1. You need to execute a script for creating the database that is in the file `/webshop.sql`
+1. You need to execute a script for creating the database that is in the file `mysql/webshop.sql`
 2. Modify the database connection configuration to suit your settings. All settings can be found in the file `src/main/resources/application.properties`. 
 3. Finally, you can start application by running `main()` method inside `src/main/java/com/veljko/webshop/WebshopApplication.java` file.
 

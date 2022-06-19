@@ -31,7 +31,6 @@ Data is validated both on frontend and backend side.
        <li>Java</li>
        <li>Spring boot</li>
        <li>Spring Data JPA</li>
-       <li>Hibernate</li>
        <li>MySQL</li>
     </ul>
   </li>

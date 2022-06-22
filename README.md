@@ -1,6 +1,6 @@
 <h1 align="center">Web Shop Administration Tool</h1>
 
-![Admin Page Products](https://i.ibb.co/zXj3sWQ/products.png)
+![Admin Page Products](https://i.imgur.com/2Y831Oy.png)
 
 <br>
 
@@ -66,7 +66,7 @@ Data is validated both on frontend and backend side.
 
 <br>
 
-![All Customers](https://i.ibb.co/jWp8gDz/customers.png)
+![All Customers](https://i.imgur.com/4bR3a2i.png)
 
 <br>
 
@@ -74,7 +74,7 @@ Data is validated both on frontend and backend side.
 
 <br>
 
-![Manage Products](https://i.ibb.co/gt6LTL4/add-product.png)
+![Manage Products](https://i.imgur.com/N1cCxds.png)
 
 <br>
 
@@ -82,7 +82,7 @@ Data is validated both on frontend and backend side.
 
 <br>
 
-![Manage Customers](https://i.ibb.co/R4W6nNq/add-customer.png)
+![Manage Customers](https://i.imgur.com/VMhhgLp.png)
 
 
 <br>
@@ -92,11 +92,11 @@ Data is validated both on frontend and backend side.
 <br>
 
 
-![Manage Sales](https://i.ibb.co/dQjXhSt/sales.png)
+![Manage Sales](https://i.imgur.com/YZ2zV4v.png)
 
 <br>
 <br>
 
 ## <a name="Database"></a> Database Diagram
 
-![Database Diagram](https://i.ibb.co/BNBKbS2/er-diagram.png)
+![Database Diagram](https://imgur.com/KROkcA2.png)
